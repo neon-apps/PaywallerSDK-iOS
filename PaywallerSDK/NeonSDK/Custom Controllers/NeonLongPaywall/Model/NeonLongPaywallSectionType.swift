@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import NeonSDK
+
 import UIKit
 
 public enum NeonLongPaywallSectionType{

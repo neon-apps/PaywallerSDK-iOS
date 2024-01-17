@@ -9,7 +9,7 @@
 
 import Foundation
 import UIKit
-import NeonSDK
+
 
 @available(iOS 13.0, *)
 protocol NeonSlideCollectionViewDelegate: AnyObject {

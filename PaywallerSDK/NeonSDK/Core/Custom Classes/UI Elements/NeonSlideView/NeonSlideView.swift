@@ -8,7 +8,7 @@
 #if !os(xrOS)
 import Foundation
 import UIKit
-import NeonSDK
+
 
 
 @available(iOS 13.0, *)

@@ -6,7 +6,7 @@
 //
 #if !os(xrOS)
 import Foundation
-import NeonSDK
+
 import UIKit
 
 public class NeonSlideItem{

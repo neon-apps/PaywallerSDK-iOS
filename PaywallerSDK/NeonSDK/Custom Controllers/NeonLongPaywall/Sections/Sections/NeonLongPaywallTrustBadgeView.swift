@@ -7,7 +7,7 @@
 
 import Foundation
 
-import NeonSDK
+
 import UIKit
 
 @available(iOS 15.0, *)

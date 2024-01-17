@@ -7,7 +7,7 @@
 
 
 import Foundation
-import NeonSDK
+
 import UIKit
 import StoreKit
 
