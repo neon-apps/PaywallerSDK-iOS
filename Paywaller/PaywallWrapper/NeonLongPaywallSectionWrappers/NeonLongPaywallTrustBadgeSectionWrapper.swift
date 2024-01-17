@@ -41,6 +41,8 @@ extension NeonLongPaywallJSONWrapper {
         return nil
     }
 }
+
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createTrustBadgeJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .trustBadge(type) = section else {

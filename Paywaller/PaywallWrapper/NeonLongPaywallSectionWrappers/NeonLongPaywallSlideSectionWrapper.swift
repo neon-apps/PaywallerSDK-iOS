@@ -32,7 +32,7 @@ extension NeonLongPaywallJSONWrapper {
         return nil
     }
 }
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createSlideJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .slide(height, showBeforeAfterBadges, items) = section else {

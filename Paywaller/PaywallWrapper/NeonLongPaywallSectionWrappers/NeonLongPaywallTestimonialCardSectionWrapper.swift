@@ -22,7 +22,7 @@ extension NeonLongPaywallJSONWrapper {
 
 
 }
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createTestimonialCardJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .testimonialCard(title, subtitle, author, image, imageURL) = section else {

@@ -53,7 +53,7 @@ extension NeonLongPaywallJSONWrapper {
         }
     }
 }
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createImageJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .imageWithURL(height, url, cornerRadius, horizontalPadding, contentMode) = section else {

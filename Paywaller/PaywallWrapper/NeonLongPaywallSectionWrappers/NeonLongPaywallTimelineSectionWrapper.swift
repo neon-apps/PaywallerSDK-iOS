@@ -29,7 +29,7 @@ extension NeonLongPaywallJSONWrapper {
         return nil
     }
 }
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createTimelineJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .timeline(hasContainer, items) = section else {

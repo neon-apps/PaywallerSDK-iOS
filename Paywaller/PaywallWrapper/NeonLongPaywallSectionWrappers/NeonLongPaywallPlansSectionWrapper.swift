@@ -59,7 +59,7 @@ extension NeonLongPaywallJSONWrapper {
     }
 }
 
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createPlansJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .plans(type, items) = section else {

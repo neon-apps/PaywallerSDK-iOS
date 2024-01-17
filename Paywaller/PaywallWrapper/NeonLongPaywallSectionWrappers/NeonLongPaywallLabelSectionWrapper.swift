@@ -67,7 +67,7 @@ extension NeonLongPaywallJSONWrapper {
     
     
    }
-    
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createLabelJSON(from section: NeonLongPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .label(text, font, overrideTextColor, alignment, horizontalPadding) = section else {
