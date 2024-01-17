@@ -48,7 +48,7 @@ let package = Package(
                 .product(name: "FirebaseMessaging", package: "Firebase", condition: .when(platforms: [.iOS]))
                 
             
-            ], path: "Paywaller", resources: [.process("Core/Resources/Animations"), .process("Core/Resources/Fonts"), .process("Core/Resources/Assets")])
+            ], path: "Paywaller", resources: [.process("NeonSDK/Core/Resources/Animations"), .process("NeonSDK/Core/Resources/Fonts"), .process("NeonSDK/Core/Resources/Assets")])
         
     ]
 )
