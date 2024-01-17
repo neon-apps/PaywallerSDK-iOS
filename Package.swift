@@ -4,11 +4,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "PaywallerSDK",    products: [
+    name: "Paywaller",    products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "PaywallerSDK",
-            targets: ["PaywallerSDK"])
+            name: "Paywaller",
+            targets: ["Paywaller"])
     ],
     
     dependencies: [
@@ -29,7 +29,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
        
         .target(
-            name: "PaywallerSDK",  dependencies: [
+            name: "Paywaller",  dependencies: [
                 "RevenueCat",
                 "Hero",
                 "SnapKit",
@@ -48,7 +48,7 @@ let package = Package(
                 .product(name: "FirebaseMessaging", package: "Firebase", condition: .when(platforms: [.iOS]))
                 
             
-            ], path: "PaywallerSDK", resources: [.process("NeonSDK/Core/Resources/Animations"), .process("NeonSDK/Core/Resources/Fonts"), .process("NeonSDK/Core/Resources/Assets")])
+            ], path: "Paywaller", resources: [.process("NeonSDK/Core/Resources/Animations"), .process("NeonSDK/Core/Resources/Fonts"), .process("NeonSDK/Core/Resources/Assets")])
         
     ]
 )
