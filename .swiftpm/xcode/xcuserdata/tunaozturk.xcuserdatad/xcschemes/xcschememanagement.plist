@@ -101,6 +101,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>Paywaller</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>neonapps-paywaller-ios</key>
 		<dict>
 			<key>primary</key>
