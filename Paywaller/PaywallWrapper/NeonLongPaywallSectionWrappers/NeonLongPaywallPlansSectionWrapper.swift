@@ -9,6 +9,7 @@ import Foundation
 
 import UIKit
 
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createPlansSection(fromDict dict: [String: Any]) -> NeonLongPaywallSectionType? {
         if let typeRaw = dict["type"] as? String,

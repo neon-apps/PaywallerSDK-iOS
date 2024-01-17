@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createJSON(from sections: [NeonLongPaywallSectionType], constants : NeonLongPaywallConstants ) -> [String: Any] {
         var json: [String: Any] = [:]

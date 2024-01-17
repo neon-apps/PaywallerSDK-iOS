@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createImageSection(fromDict dict: [String: Any]) -> NeonLongPaywallSectionType? {
         if let height = dict["height"] as? CGFloat,

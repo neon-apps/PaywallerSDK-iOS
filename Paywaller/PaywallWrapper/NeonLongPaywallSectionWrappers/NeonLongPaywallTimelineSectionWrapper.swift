@@ -6,9 +6,9 @@
 //
 
 import Foundation
-
 import UIKit
 
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createTimelineSection(fromDict dict: [String: Any]) -> NeonLongPaywallSectionType? {
         if let hasContainer = dict["hasContainer"] as? Bool,

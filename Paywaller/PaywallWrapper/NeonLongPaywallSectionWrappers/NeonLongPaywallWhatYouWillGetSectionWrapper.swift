@@ -6,9 +6,9 @@
 //
 
 import Foundation
-
 import UIKit
 
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createWhatYouWillGetSection(fromDict dict: [String: Any]) -> NeonLongPaywallSectionType? {
         if let title = dict["title"] as? String,

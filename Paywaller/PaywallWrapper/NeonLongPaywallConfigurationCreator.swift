@@ -9,6 +9,7 @@ import Foundation
 
 import UIKit
 
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createConstants(from dict: [String: Any]) -> NeonLongPaywallConstants {
         let constants = NeonLongPaywallConstants()
