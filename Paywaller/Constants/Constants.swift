@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@available(iOS 15.0, *)
 class Constants{
     static var apiKey = String()
     static var paywalls = [PaywallerPaywall]()
