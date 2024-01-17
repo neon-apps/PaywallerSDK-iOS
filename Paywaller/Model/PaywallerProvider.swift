@@ -7,12 +7,12 @@
 
 import Foundation
 
-
+@available(iOS 15.0, *)
 public enum PaywallerProviderConfiguration{
     case adapty(apiKey : String, placementIDs : [String], accessLevel : String)
     case revenuecat
 }
-
+@available(iOS 15.0, *)
 public enum PaywallerProviderPaywallConfiguration{
     case adapty(placementID : String)
     case revenuecat

@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@available(iOS 15.0, *)
 class PaywallerPaywall{
     internal init(manager: NeonLongPaywallManager = NeonLongPaywallManager(), provider: PaywallerProviderPaywallConfiguration = PaywallerProviderPaywallConfiguration.none) {
         self.manager = manager

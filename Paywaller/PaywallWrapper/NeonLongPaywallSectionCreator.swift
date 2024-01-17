@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@available(iOS 15.0, *)
 class NeonLongPaywallJSONWrapper {
     static func createSections(from json: [String: Any]) -> [NeonLongPaywallSectionType] {
         var sections: [NeonLongPaywallSectionType] = []

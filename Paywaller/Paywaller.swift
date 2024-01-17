@@ -6,10 +6,10 @@
 //
 
 import Foundation
-
 import UIKit
 
-class Paywaller{
+@available(iOS 15.0, *)
+public class Paywaller{
     
     public static func configure(apiKey : String, provider : PaywallerProviderConfiguration){
         configureProvider(provider: provider)
