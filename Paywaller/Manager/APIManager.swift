@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@available(iOS 15.0, *)
 class APIManager {
     static let shared = APIManager()
     
