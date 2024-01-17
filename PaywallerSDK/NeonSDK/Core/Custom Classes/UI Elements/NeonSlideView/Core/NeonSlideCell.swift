@@ -7,7 +7,7 @@
 #if !os(xrOS)
 import Foundation
 import UIKit
-import NeonSDK
+
 class NeonSlideCell: NeonCollectionViewCell<NeonSlideItem> {
     
     public let titleLabel = UILabel()
