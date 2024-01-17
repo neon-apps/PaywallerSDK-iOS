@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@available(iOS 15.0, *)
 extension NeonLongPaywallJSONWrapper {
     static func createConfigurationJSON(from constants: NeonLongPaywallConstants) -> [String: Any]? {
         var configuration: [String: Any] = [:]
