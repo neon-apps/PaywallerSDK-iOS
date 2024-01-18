@@ -70,18 +70,18 @@ public class Paywaller{
             case .success(let dictionary):
                 if let json = dictionary["json"] as? [String : Any]{
                     DispatchQueue.main.async {
-                        let sectionTypes = NeonLongPaywallJSONWrapper.createSections(from: json)
-                        let constants = NeonLongPaywallJSONWrapper.createConstants(from: json)
-                        let manager = NeonLongPaywallManager()
+                        let sectionTypes = PaywallerPaywallJSONWrapper.createSections(from: json)
+                        let constants = PaywallerPaywallJSONWrapper.createConstants(from: json)
+                        let manager = PaywallerPaywallManager()
                         manager.constants = constants
                         
-                        let paywall = NeonLongPaywallController()
+                        let paywall = PaywallerPaywallController()
                         paywall.paywallManager = manager
                         
                         manager.paywall = paywall
                         
                         for sectionType in sectionTypes {
-                            manager.sections.append(NeonLongPaywallSection(type: sectionType, manager: manager))
+                            manager.sections.append(PaywallerPaywallSection(type: sectionType, manager: manager))
                         }
                         Constants.paywalls.append(PaywallerPaywall(manager: manager, provider: .adapty(placementID: placementID)))
                     }
