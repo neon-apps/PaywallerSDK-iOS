@@ -10,14 +10,14 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createSpacingSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createSpacingSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let height = dict["height"] as? CGFloat {
             return .spacing(height: height)
         }
         return nil
     }
     
-    static func createSpacingJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createSpacingJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
            guard case let .spacing(height) = section else {
                return nil // Return nil if the input section is not of type .spacing
            }

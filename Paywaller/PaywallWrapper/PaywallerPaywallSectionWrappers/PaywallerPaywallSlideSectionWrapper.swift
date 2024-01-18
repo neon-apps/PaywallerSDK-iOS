@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createSlideSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createSlideSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let height = dict["height"] as? CGFloat,
            let showBeforeAfterBadges = dict["showBeforeAfterBadges"] as? Bool,
            let itemsData = dict["items"] as? [[String: Any]] {
@@ -35,7 +35,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createSlideJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createSlideJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .slide(height, showBeforeAfterBadges, items) = section else {
             return nil // Return nil if the input section is not of type .slide
         }

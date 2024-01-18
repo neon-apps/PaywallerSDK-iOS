@@ -11,7 +11,7 @@ import UIKit
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createFAQSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createFAQSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let title = dict["title"] as? String,
            let itemsData = dict["items"] as? [[String: Any]] {
             
@@ -33,7 +33,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createFAQJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createFAQJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .faq(title, items) = section else {
             return nil // Return nil if the input section is not of type .faq
         }

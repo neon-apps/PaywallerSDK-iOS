@@ -13,7 +13,7 @@ import UIKit
 extension PaywallerPaywallJSONWrapper {
 
     
-    static func createLabelSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createLabelSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
            if let text = dict["text"] as? String,
               let fontDict = dict["font"] as? [String: Any],
               let fontSize = fontDict["size"] as? CGFloat,
@@ -30,7 +30,7 @@ extension PaywallerPaywallJSONWrapper {
            return nil
        }
        
-       static func textAlignmentFromString(_ alignmentString: String) -> NSTextAlignment? {
+       public static func textAlignmentFromString(_ alignmentString: String) -> NSTextAlignment? {
            switch alignmentString {
            case "left":
                return .left
@@ -43,7 +43,7 @@ extension PaywallerPaywallJSONWrapper {
            }
        }
     
-    static func fontWeight(from string: String) -> FontManager.FontWeight? {
+    public static func fontWeight(from string: String) -> FontManager.FontWeight? {
             switch string.lowercased() {
             case "light":
                 return .Light
@@ -69,7 +69,7 @@ extension PaywallerPaywallJSONWrapper {
    }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createLabelJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createLabelJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .label(text, font, overrideTextColor, alignment, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .label
         }
@@ -96,7 +96,7 @@ extension PaywallerPaywallJSONWrapper {
         return labelDict
     }
     
-    static func textAlignmentToString(_ alignment: NSTextAlignment) -> String {
+    public static func textAlignmentToString(_ alignment: NSTextAlignment) -> String {
         switch alignment {
         case .left:
             return "left"
@@ -109,7 +109,7 @@ extension PaywallerPaywallJSONWrapper {
         }
     }
     
-    static func fontWeightToString(_ font: UIFont) -> String {
+    public static func fontWeightToString(_ font: UIFont) -> String {
         let fontName = font.fontName.lowercased()
         if fontName.contains("light") {
             return "light"

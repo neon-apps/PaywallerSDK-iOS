@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createJSON(from sections: [PaywallerPaywallSectionType], constants : PaywallerPaywallConstants ) -> [String: Any] {
+    public static func createJSON(from sections: [PaywallerPaywallSectionType], constants : PaywallerPaywallConstants ) -> [String: Any] {
         var json: [String: Any] = [:]
         var sectionsArray: [[String: Any]] = []
 

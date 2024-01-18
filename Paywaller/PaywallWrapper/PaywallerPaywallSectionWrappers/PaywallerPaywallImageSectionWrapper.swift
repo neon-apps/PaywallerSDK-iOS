@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createImageSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createImageSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let height = dict["height"] as? CGFloat,
            let url = dict["url"] as? String,
            let cornerRadius = dict["cornerRadious"] as? CGFloat,
@@ -23,7 +23,7 @@ extension PaywallerPaywallJSONWrapper {
         return nil
     }
 
-    static func contentModeFromString(_ contentModeString: String) -> UIView.ContentMode? {
+    public static func contentModeFromString(_ contentModeString: String) -> UIView.ContentMode? {
         switch contentModeString {
         case "scaleToFill":
             return .scaleToFill
@@ -56,7 +56,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createImageJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createImageJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .imageWithURL(height, url, cornerRadius, horizontalPadding, contentMode) = section else {
             return nil 
         }
@@ -78,7 +78,7 @@ extension PaywallerPaywallJSONWrapper {
         return imageDict
     }
 
-    static func contentModeStringFromEnum(_ contentMode: UIView.ContentMode) -> String {
+    public static func contentModeStringFromEnum(_ contentMode: UIView.ContentMode) -> String {
         switch contentMode {
         case .scaleToFill:
             return "scaleToFill"

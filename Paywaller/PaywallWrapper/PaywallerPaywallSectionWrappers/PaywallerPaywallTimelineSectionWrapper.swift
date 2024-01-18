@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createTimelineSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createTimelineSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let hasContainer = dict["hasContainer"] as? Bool,
            let itemsData = dict["items"] as? [[String: Any]] {
             
@@ -32,7 +32,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createTimelineJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createTimelineJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .timeline(hasContainer, items) = section else {
             return nil // Return nil if the input section is not of type .timeline
         }

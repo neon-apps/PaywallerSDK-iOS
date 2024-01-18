@@ -11,7 +11,7 @@ import UIKit
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createFeaturesSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createFeaturesSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
            if let itemsDict = dict["items"] as? [[String: Any]],
            let items = createFeaturesItems(fromDicts: itemsDict) {
             
@@ -24,7 +24,7 @@ extension PaywallerPaywallJSONWrapper {
         return nil
     }
 
-    static func createFeaturesItems(fromDicts dicts: [[String: Any]]) -> [NeonPaywallFeature]? {
+    public static func createFeaturesItems(fromDicts dicts: [[String: Any]]) -> [NeonPaywallFeature]? {
         var items: [NeonPaywallFeature] = []
         
         for itemDict in dicts {
@@ -37,7 +37,7 @@ extension PaywallerPaywallJSONWrapper {
             return items.isEmpty ? nil : items
        
     }
-    static func createFont(fromDict dict: [String: Any]) -> UIFont? {
+    public static func createFont(fromDict dict: [String: Any]) -> UIFont? {
         if let fontDict = dict["font"] as? [String: Any],
            let fontSize = fontDict["size"] as? CGFloat,
            let fontWeightRaw = fontDict["fontWeight"] as? String,
@@ -47,7 +47,7 @@ extension PaywallerPaywallJSONWrapper {
         return nil
     }
 
-    static func createTextColor(fromDict dict: [String: Any]) -> UIColor? {
+    public static func createTextColor(fromDict dict: [String: Any]) -> UIColor? {
         if let hexColor = dict["textColor"] as? String,
            let textColor = UIColor.fromHex(hexColor) {
             return textColor
@@ -59,7 +59,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createFeaturesJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createFeaturesJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .features(items, overrideTextColor, font, _, offset) = section else {
             return nil // Return nil if the input section is not of type .features
         }

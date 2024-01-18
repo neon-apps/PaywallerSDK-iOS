@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createTestimonialCardSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createTestimonialCardSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let title = dict["title"] as? String,
            let subtitle = dict["subtitle"] as? String,
            let author = dict["author"] as? String?,
@@ -25,7 +25,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createTestimonialCardJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createTestimonialCardJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .testimonialCard(title, subtitle, author, image, imageURL) = section else {
             return nil // Return nil if the input section is not of type .testimonialCard
         }

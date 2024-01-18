@@ -9,8 +9,8 @@ import Foundation
 import NeonSDK
 
 @available(iOS 15.0, *)
-class PaywallerPaywallJSONWrapper {
-    static func createSections(from json: [String: Any]) -> [PaywallerPaywallSectionType] {
+public class PaywallerPaywallJSONWrapper {
+    public static func createSections(from json: [String: Any]) -> [PaywallerPaywallSectionType] {
         var sections: [PaywallerPaywallSectionType] = []
 
         if let sectionsArray = json["sections"] as? [[String: Any]] {
@@ -91,7 +91,7 @@ class PaywallerPaywallJSONWrapper {
     }
 
 
-    static func addSections(_ sections: [PaywallerPaywallSectionType], manager : PaywallerPaywallManager) {
+    public static func addSections(_ sections: [PaywallerPaywallSectionType], manager : PaywallerPaywallManager) {
         for section in sections {
             manager.addSection(type: section)
         }

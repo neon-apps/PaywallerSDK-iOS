@@ -10,7 +10,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createConfigurationJSON(from constants: PaywallerPaywallConstants) -> [String: Any]? {
+    public static func createConfigurationJSON(from constants: PaywallerPaywallConstants) -> [String: Any]? {
         var configuration: [String: Any] = [:]
 
         // Populate the configuration dictionary with values from the constants object

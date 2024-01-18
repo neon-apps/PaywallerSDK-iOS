@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createTrustBadgeSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createTrustBadgeSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let typeString = dict["type"] as? String,
            let type = trustBadgeTypeFromString(typeString, fromDict: dict) {
             return .trustBadge(type: type)
@@ -19,7 +19,7 @@ extension PaywallerPaywallJSONWrapper {
         return nil
     }
     
-    static func trustBadgeTypeFromString(_ typeString: String, fromDict dict: [String: Any]) -> PaywallerPaywallTrustBadgeType? {
+    public static func trustBadgeTypeFromString(_ typeString: String, fromDict dict: [String: Any]) -> PaywallerPaywallTrustBadgeType? {
         switch typeString {
         case "laurelWreath":
             if let rating = dict["rating"] as? Double,

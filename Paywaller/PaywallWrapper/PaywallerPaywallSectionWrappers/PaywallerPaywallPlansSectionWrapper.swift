@@ -11,7 +11,7 @@ import UIKit
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createPlansSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createPlansSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let typeRaw = dict["type"] as? String,
            let type = planViewTypeFromString(typeRaw),
            let itemsData = dict["items"] as? [[String: Any]] {
@@ -34,7 +34,7 @@ extension PaywallerPaywallJSONWrapper {
         return nil
     }
     
-    static func planViewTypeFromString(_ typeString: String) -> PaywallerPaywallPlanViewType? {
+    public static func planViewTypeFromString(_ typeString: String) -> PaywallerPaywallPlanViewType? {
         switch typeString {
         case "horizontal":
             return .horizontal
@@ -45,7 +45,7 @@ extension PaywallerPaywallJSONWrapper {
         }
     }
     
-    static func priceTypeFromString(_ priceTypeString: String) -> PaywallerPaywallPlan.PriceType? {
+    public static func priceTypeFromString(_ priceTypeString: String) -> PaywallerPaywallPlan.PriceType? {
         switch priceTypeString {
         case "default":
             return .default
@@ -61,7 +61,7 @@ extension PaywallerPaywallJSONWrapper {
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createPlansJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createPlansJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .plans(type, items) = section else {
             return nil // Return nil if the input section is not of type .plans
         }
@@ -92,7 +92,7 @@ extension PaywallerPaywallJSONWrapper {
         return plansDict
     }
     
-    static func planViewTypeToString(_ type: PaywallerPaywallPlanViewType) -> String {
+    public static func planViewTypeToString(_ type: PaywallerPaywallPlanViewType) -> String {
         switch type {
         case .horizontal:
             return "horizontal"
@@ -101,7 +101,7 @@ extension PaywallerPaywallJSONWrapper {
         }
     }
     
-    static func priceTypeToString(_ priceType: PaywallerPaywallPlan.PriceType) -> String {
+    public static func priceTypeToString(_ priceType: PaywallerPaywallPlan.PriceType) -> String {
         switch priceType {
         case .default:
             return "default"

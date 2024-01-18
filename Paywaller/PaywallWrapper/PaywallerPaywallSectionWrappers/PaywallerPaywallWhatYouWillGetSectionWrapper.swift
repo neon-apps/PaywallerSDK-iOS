@@ -11,7 +11,7 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createWhatYouWillGetSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createWhatYouWillGetSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let title = dict["title"] as? String,
            let hasContainer = dict["hasContainer"] as? Bool,
            let itemsData = dict["items"] as? [[String: Any]] {
@@ -34,7 +34,7 @@ extension PaywallerPaywallJSONWrapper {
 }
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createWhatYouWillGetJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createWhatYouWillGetJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .whatYouWillGet(title, hasContainer, items) = section else {
             return nil // Return nil if the input section is not of type .whatYouWillGet
         }

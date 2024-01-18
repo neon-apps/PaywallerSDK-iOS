@@ -11,7 +11,7 @@ import UIKit
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createPlanComparisonSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
+    public static func createPlanComparisonSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let itemsData = dict["items"] as? [[String: Any]] {
             var items: [PaywallerPaywallPlanComparisonItem] = []
             for itemData in itemsData {
@@ -28,7 +28,7 @@ extension PaywallerPaywallJSONWrapper {
         return nil
     }
     
-    static func availabilityFromString(_ availabilityString: String) -> PaywallerPaywallPlanComparisonItem.Availability? {
+    public static func availabilityFromString(_ availabilityString: String) -> PaywallerPaywallPlanComparisonItem.Availability? {
         switch availabilityString {
         case "locked":
             return .locked
@@ -44,7 +44,7 @@ extension PaywallerPaywallJSONWrapper {
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createPlanComparisonJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
+    public static func createPlanComparisonJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
         guard case let .planComparison(items) = section else {
             return nil // Return nil if the input section is not of type .planComparison
         }
@@ -71,7 +71,7 @@ extension PaywallerPaywallJSONWrapper {
         return planComparisonDict
     }
     
-    static func availabilityToString(_ availability: PaywallerPaywallPlanComparisonItem.Availability) -> String {
+    public static func availabilityToString(_ availability: PaywallerPaywallPlanComparisonItem.Availability) -> String {
         switch availability {
         case .locked:
             return "locked"

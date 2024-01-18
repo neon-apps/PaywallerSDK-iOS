@@ -11,7 +11,7 @@ import UIKit
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
-    static func createConstants(from dict: [String: Any]) -> PaywallerPaywallConstants {
+    public static func createConstants(from dict: [String: Any]) -> PaywallerPaywallConstants {
         let constants = PaywallerPaywallConstants()
 
         if let configuration = dict["configuration"] as? [String: Any] {
