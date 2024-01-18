@@ -27,9 +27,7 @@ let package = Package(
         .target(
             name: "Paywaller",  dependencies: [
               "NeonSDK"
-                
-            
-            ], path: "Paywaller", resources: [.process("NeonSDK/Core/Resources/Animations"), .process("NeonSDK/Core/Resources/Fonts"), .process("NeonSDK/Core/Resources/Assets")])
+            ], path: "Paywaller", resources: [.process("Resources/Assets")])
         
     ]
 )
