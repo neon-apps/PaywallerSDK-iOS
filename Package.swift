@@ -13,14 +13,10 @@ let package = Package(
     
     dependencies: [
         
-        .package(name: "SDWebImage", url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.15.5"),
-        .package(name: "RevenueCat", url: "https://github.com/RevenueCat/purchases-ios.git", from: "4.31.0"),
-        .package(name: "Lottie", url: "https://github.com/airbnb/lottie-spm.git", from: "4.1.3"),
-        .package(name: "Hero", url: "https://github.com/HeroTransitions/Hero.git", .upToNextMajor(from: "1.4.0")),
-        .package(name: "SnapKit", url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
-        .package(name: "Firebase", url: "https://github.com/firebase/firebase-ios-sdk.git",    .upToNextMajor(from: "10.4.0")),
-        .package(name: "Localize_Swift", url: "https://github.com/marmelroy/Localize-Swift.git", .upToNextMajor(from: "3.2.0")),
-        .package(name: "Adapty", url: "https://github.com/adaptyteam/AdaptySDK-iOS.git", .upToNextMajor(from: "2.9.0"))
+        
+        .package(name: "NeonSDK", url: "https://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@github.com/neon-apps/neon-sdk.git", branch: "main"),
+      
+       
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
@@ -30,22 +26,7 @@ let package = Package(
        
         .target(
             name: "Paywaller",  dependencies: [
-                "RevenueCat",
-                "Hero",
-                "SnapKit",
-                "Localize_Swift",
-                .product(name: "Adapty", package: "Adapty", condition: .when(platforms: [.iOS])),
-                .product(name: "SDWebImage", package: "SDWebImage", condition: .when(platforms: [.iOS])),
-                .product(name: "Lottie", package: "Lottie", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseAnalytics", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseRemoteConfig", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseStorage", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseFirestore", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseFirestoreSwift", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseAuth", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseCrashlytics", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseDynamicLinks", package: "Firebase", condition: .when(platforms: [.iOS])),
-                .product(name: "FirebaseMessaging", package: "Firebase", condition: .when(platforms: [.iOS]))
+              "NeonSDK"
                 
             
             ], path: "Paywaller", resources: [.process("NeonSDK/Core/Resources/Animations"), .process("NeonSDK/Core/Resources/Fonts"), .process("NeonSDK/Core/Resources/Assets")])

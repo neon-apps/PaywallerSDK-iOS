@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NeonSDK
 
 @available(iOS 15.0, *)
 class APIManager {
