@@ -113,7 +113,9 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         durationLabel.textAlignment = .center
         addArrangedSubview(durationLabel)
         setCustomSpacing(3, after: durationLabel)
-        
+        durationLabel.snp.makeConstraints { make in
+            make.width.lessThanOrEqualToSuperview().inset(5)
+        }
         
         
         unitCostLabel.text = "..."
@@ -122,6 +124,9 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         unitCostLabel.numberOfLines = 0
         unitCostLabel.textAlignment = .center
         addArrangedSubview(unitCostLabel)
+        unitCostLabel.snp.makeConstraints { make in
+            make.width.lessThanOrEqualToSuperview().inset(5)
+        }
         
         
         saveLabel.text = " "
@@ -130,6 +135,9 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         saveLabel.numberOfLines = 0
         saveLabel.textAlignment = .center
         addArrangedSubview(saveLabel)
+        saveLabel.snp.makeConstraints { make in
+            make.width.lessThanOrEqualToSuperview().inset(5)
+        }
         
         
         iconSelected.image =  UIImage(named: "btn_radio_unselected", in: Bundle.module, compatibleWith: nil)
