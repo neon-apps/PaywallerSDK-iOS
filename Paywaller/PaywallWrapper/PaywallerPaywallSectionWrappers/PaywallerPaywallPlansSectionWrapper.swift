@@ -18,8 +18,10 @@ extension PaywallerPaywallJSONWrapper {
             
             var plans: [PaywallerPaywallPlan] = []
             for itemData in itemsData {
+                
+                let tag = itemData["tag"] as? String
+                
                 if let productIdentifier = itemData["productIdentifier"] as? String,
-                   let tag = itemData["tag"] as? String,
                    let priceTypeRaw = itemData["priceType"] as? String,
                    let priceType = priceTypeFromString(priceTypeRaw),
                    let isDefaultSelected = itemData["isDefaultSelected"] as? Bool {
