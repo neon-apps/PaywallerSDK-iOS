@@ -69,8 +69,8 @@ class PaywallerPaywallVerticalPlanView : UIView, AdaptyManagerDelegate{
         
         guard let plan else { return }
         
-        saveLabel.text = "{DISCOUNT-AMOUNT}"
-        durationLabel.text = "{PACKAGE-DURATION}"
+        saveLabel.text = "{DISCOUNT}"
+        durationLabel.text = "{TYPE}"
         tagLabel.text = plan.tag ?? "{TRIAL-DURATION}"
         planManager.configurePlaceholderPrices(durationLabel: durationLabel, unitCostLabel: unitCostLabel, plan: plan, allPlans: allPlans)
         
