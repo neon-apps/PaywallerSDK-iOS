@@ -142,7 +142,7 @@ class PaywallerPaywallVerticalPlanView : UIView, AdaptyManagerDelegate{
             make.centerY.equalTo(unitCostLabel)
         }
         
-        iconSelected.image = UIImage(named: "btn_radio_unselected", in: Bundle.module, compatibleWith: nil)
+        iconSelected.image = UIImage(named: "btn_radio_unselected", in: Bundle.module, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         iconSelected.tintColor = paywallManager.constants.mainColor
         addSubview(iconSelected)
         iconSelected.snp.makeConstraints { make in
@@ -181,7 +181,7 @@ class PaywallerPaywallVerticalPlanView : UIView, AdaptyManagerDelegate{
         
         backgroundColor = paywallManager.constants.selectedContainerColor
         layer.borderColor = paywallManager.constants.selectedContainerBorderColor.cgColor
-        iconSelected.image = UIImage(named: "btn_radio_selected", in: Bundle.module, compatibleWith: nil)
+        iconSelected.image = UIImage(named: "btn_radio_selected", in: Bundle.module, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         
         UIView.animate(withDuration: 0.3) {
             self.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
@@ -194,7 +194,7 @@ class PaywallerPaywallVerticalPlanView : UIView, AdaptyManagerDelegate{
         
         backgroundColor = paywallManager.constants.containerColor
         layer.borderColor = paywallManager.constants.containerBorderColor.cgColor
-        iconSelected.image = UIImage(named: "btn_radio_unselected", in: Bundle.module, compatibleWith: nil)
+        iconSelected.image = UIImage(named: "btn_radio_unselected", in: Bundle.module, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         
         UIView.animate(withDuration: 0.3) {
             self.transform = CGAffineTransform(scaleX: 1.00, y: 1.00)
