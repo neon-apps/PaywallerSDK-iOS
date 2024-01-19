@@ -114,7 +114,7 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         addArrangedSubview(durationLabel)
         setCustomSpacing(3, after: durationLabel)
         durationLabel.snp.makeConstraints { make in
-            make.width.lessThanOrEqualToSuperview().inset(5)
+            make.width.equalToSuperview().inset(5)
         }
         
         
@@ -125,7 +125,7 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         unitCostLabel.textAlignment = .center
         addArrangedSubview(unitCostLabel)
         unitCostLabel.snp.makeConstraints { make in
-            make.width.lessThanOrEqualToSuperview().inset(5)
+            make.width.equalToSuperview().inset(5)
         }
         
         
@@ -136,7 +136,7 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         saveLabel.textAlignment = .center
         addArrangedSubview(saveLabel)
         saveLabel.snp.makeConstraints { make in
-            make.width.lessThanOrEqualToSuperview().inset(5)
+            make.width.equalToSuperview().inset(5)
         }
         
         
