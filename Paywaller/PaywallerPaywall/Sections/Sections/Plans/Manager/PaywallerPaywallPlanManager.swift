@@ -54,10 +54,11 @@ class PaywallerPaywallPlanManager {
         }
     }
     
-    func configurePlaceholderPrices(durationLabel : UILabel,  unitCostLabel : UILabel, plan : PaywallerPaywallPlan){
+    func configurePlaceholderPrices(durationLabel : UILabel,  unitCostLabel : UILabel, plan : PaywallerPaywallPlan, allPlans : [PaywallerPaywallPlan]){
        
        self.plan = plan
-
+        self.allPlans = allPlans
+        
        switch plan.priceType{
        case .default:
            unitCostLabel.text = "{PLAN-PRICE}"

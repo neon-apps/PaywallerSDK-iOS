@@ -70,7 +70,7 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         saveLabel.text = "{DISCOUNT-AMOUNT}"
         durationLabel.text = "{PACKAGE-DURATION}"
         tagLabel.text = plan.tag ?? "{TRIAL-DURATION}"
-        planManager.configurePlaceholderPrices(durationLabel: durationLabel, unitCostLabel: unitCostLabel, plan: plan)
+        planManager.configurePlaceholderPrices(durationLabel: durationLabel, unitCostLabel: unitCostLabel, plan: plan, allPlans: allPlans)
         
     }
     func configureView(){
