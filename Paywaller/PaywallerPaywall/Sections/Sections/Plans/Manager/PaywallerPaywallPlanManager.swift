@@ -40,10 +40,38 @@ class PaywallerPaywallPlanManager {
         self.plan = plan
         self.allPlans = allPlans
         
-         durationLabel.text = "Weekly"
-         unitCostLabel.text = "{WEEKLY-PRICE}"
-        
+         
+        switch plan.priceType{
+        case .default:
+            showDefaultPriceFor(product: product, durationLabel: durationLabel, unitCostLabel: unitCostLabel)
+            break
+        case .perWeek:
+            showWeeklyPriceFor(product: product, durationLabel: durationLabel, unitCostLabel: unitCostLabel)
+            break
+        case .perMonth:
+            showMonthlyPriceFor(product: product, durationLabel: durationLabel, unitCostLabel: unitCostLabel)
+            break
+        }
     }
+    
+    func configurePlaceholderPrices(durationLabel : UILabel,  unitCostLabel : UILabel, plan : PaywallerPaywallPlan){
+       
+       self.plan = plan
+
+       switch plan.priceType{
+       case .default:
+           unitCostLabel.text = "{PLAN-PRICE}"
+           break
+       case .perWeek:
+           unitCostLabel.text = "{WEEKLY-PRICE}"
+           break
+       case .perMonth:
+           unitCostLabel.text = "{MONTHLY-PRICE}"
+           break
+       }
+   }
+    
+    
     
     func getDefaultPrice(product : SKProduct) -> String{
         let price = product.price

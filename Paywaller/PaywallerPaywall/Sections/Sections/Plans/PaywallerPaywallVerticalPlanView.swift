@@ -52,13 +52,28 @@ class PaywallerPaywallVerticalPlanView : UIView, AdaptyManagerDelegate{
     
     
     
-    func reloadPackage(){
-        packageFetched()
-        planManager.calculateSaveLabel(saveLabel: saveLabel)
-        planManager.calculateTagLabel(tagLabel: tagLabel)
+    func reloadPackage(shouldUsePlaceholders : Bool){
+        if shouldUsePlaceholders{
+            adjustPlaceholderPrices()
+        }else{
+            packageFetched()
+            planManager.calculateSaveLabel(saveLabel: saveLabel)
+            planManager.calculateTagLabel(tagLabel: tagLabel)
+        }
         if planManager.isDefaultPlan(){
             selectPlan()
         }
+    }
+    
+    func adjustPlaceholderPrices(){
+        
+        guard let plan else { return }
+        
+        saveLabel.text = "{DISCOUNT-AMOUNT}"
+        durationLabel.text = "{PACKAGE-DURATION}"
+        tagLabel.text = plan.tag ?? "{TRIAL-DURATION}"
+        planManager.configurePlaceholderPrices(durationLabel: durationLabel, unitCostLabel: unitCostLabel, plan: plan)
+        
     }
     
     func configureView(){

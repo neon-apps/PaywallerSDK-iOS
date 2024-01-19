@@ -29,7 +29,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .plans(type: type, items: plans)
+            return .plans(type: type, items: plans, shouldUsePlaceholders: false)
         }
         return nil
     }
@@ -62,7 +62,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createPlansJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .plans(type, items) = section else {
+        guard case let .plans(type, items, _) = section else {
             return nil // Return nil if the input section is not of type .plans
         }
         

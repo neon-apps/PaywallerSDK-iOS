@@ -18,22 +18,24 @@ public class PaywallerPaywallPlansView : BasePaywallerPaywallSectionView, Paywal
     
     let stackView = UIStackView()
     var type = PaywallerPaywallPlanViewType.horizontal
-    
+    var shouldUsePlaceholders = Bool()
     public override func configureSection(type: PaywallerPaywallSectionType) {
         
       
        
     
         switch type {
-        case .plans(let type, let plans):
+        case .plans(let type, let plans, let shouldUsePlaceholders):
             self.type = type
             manager.constants.allPlans = plans
+            self.shouldUsePlaceholders = shouldUsePlaceholders
             plans.forEach({addItem(item: $0, allItems: plans)})
             break
         default:
             fatalError("Something went wrong with PaywallerPaywall. Please consult to manager.")
         }
 
+        
         packageFetched()
         configureView()
         setConstraint()
@@ -147,11 +149,11 @@ public class PaywallerPaywallPlansView : BasePaywallerPaywallSectionView, Paywal
             switch type {
             case .horizontal:
                 if let plan = subview as? PaywallerPaywallHorizontalPlanView{
-                    plan.reloadPackage()
+                    plan.reloadPackage(shouldUsePlaceholders: shouldUsePlaceholders)
                 }
             case .vertical:
                 if let plan = subview as? PaywallerPaywallVerticalPlanView{
-                    plan.reloadPackage()
+                    plan.reloadPackage(shouldUsePlaceholders: shouldUsePlaceholders)
                 }
             }
         }

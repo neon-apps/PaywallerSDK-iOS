@@ -16,7 +16,7 @@ public enum PaywallerPaywallSectionType{
     case imageWithURL(height : CGFloat, url : String, cornerRadious : CGFloat, horizontalPadding :CGFloat, contentMode : UIView.ContentMode)
     case features(items : [NeonPaywallFeature], overrideTextColor : UIColor? = nil,  font : UIFont? = nil, iconTintColor : UIColor? = nil, offset : CGFloat? = nil)
     case testimonialCard(title : String, subtitle : String, author : String? = nil, overrideImage : UIImage? = nil,  overrideImageWithURL : String? = nil)
-    case plans(type : PaywallerPaywallPlanViewType, items : [PaywallerPaywallPlan])
+    case plans(type : PaywallerPaywallPlanViewType, items : [PaywallerPaywallPlan], shouldUsePlaceholders : Bool)
     case whatYouWillGet(title : String, hasContainer : Bool, items : [PaywallerPaywallWhatYouWillGetItem])
     case timeline(hasContainer : Bool, items : [PaywallerPaywallTimelineItem] )
     case testimonials(height : CGFloat = 220, items : [NeonTestimonial] )
@@ -40,8 +40,8 @@ public enum PaywallerPaywallSectionType{
              return .features(items: items, overrideTextColor: overrideTextColor, font: font, iconTintColor: iconTintColor, offset: offset)
          case .testimonialCard(let title, let subtitle, let author, let overrideImage, let overrideImageWithURL):
              return .testimonialCard(title: title, subtitle: subtitle, author: author, overrideImage: overrideImage, overrideImageWithURL: overrideImageWithURL)
-         case .plans(let type, let items):
-             return .plans(type: type, items: items)
+         case .plans(let type, let items, let shouldUsePlaceholders):
+             return .plans(type: type, items: items, shouldUsePlaceholders: shouldUsePlaceholders)
          case .whatYouWillGet(let title, let hasContainer, let items):
              return .whatYouWillGet(title: title, hasContainer: hasContainer, items: items)
          case .timeline(let hasContainer, let items):
