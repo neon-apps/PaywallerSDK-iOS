@@ -116,6 +116,8 @@ public class PaywallerPaywallController : UIViewController{
         legalView.restoreButtonClicked = { [self] in
             PaywallerPaywallPurchaseManager.restore(paywallManager: paywallManager, controller: self){ [self] in
                 paywallManager.delegate?.restored(from: self)
+            } completionFailure: {
+                
             }
         }
         if let termsURL = paywallManager.constants.termsURL, let privacyURL = paywallManager.constants.privacyURL{
@@ -165,9 +167,7 @@ public class PaywallerPaywallController : UIViewController{
         let btnCross = UIButton()
         btnCross.tintColor = paywallManager.constants.primaryTextColor
         btnCross.setImage(NeonSymbols.xmark, for: .normal)
-        btnCross.addAction { [self] in
-            paywallManager.delegate?.dismissed(from: self)
-        }
+        btnCross.addTarget(self, action: #selector(btnCrossClicked), for: .touchUpInside)
         scrollView.addSubview(btnCross)
         btnCross.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40)
@@ -189,6 +189,10 @@ public class PaywallerPaywallController : UIViewController{
         
         
 
+    }
+    
+    @objc func btnCrossClicked(){
+        paywallManager.delegate?.dismissed(from: self)
     }
     
     func setDelegates(){

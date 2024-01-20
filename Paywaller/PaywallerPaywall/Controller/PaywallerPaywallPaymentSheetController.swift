@@ -103,6 +103,8 @@ public class PaywallerPaywallPaymentSheetController : UIViewController{
         legalView.restoreButtonClicked = { [self] in
             PaywallerPaywallPurchaseManager.restore(paywallManager: paywallManager, controller: self){ [self] in
                 paywallManager.delegate?.restored(from: self)
+            } completionFailure: {
+                
             }
         }
         if let termsURL = paywallManager.constants.termsURL, let privacyURL = paywallManager.constants.privacyURL{

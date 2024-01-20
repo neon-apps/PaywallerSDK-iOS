@@ -43,7 +43,7 @@ class PaywallerPaywallPurchaseManager{
         }
     }
     
-    static func restore(paywallManager : PaywallerPaywallManager, controller : UIViewController, completionSuccess : @escaping () -> ()){
+    static func restore(paywallManager : PaywallerPaywallManager, controller : UIViewController, completionSuccess : @escaping () -> (), completionFailure : @escaping () -> ()){
         
         let provider = paywallManager.constants.provider
         switch provider {
@@ -53,7 +53,7 @@ class PaywallerPaywallPurchaseManager{
                 animation: .loadingCircle, animationColor: paywallManager.constants.mainColor) {
                     completionSuccess()
                 } completionFailure: {
-                    
+                    completionFailure()
                 }
         case .revenuecat:
             RevenueCatManager.restorePurchases(
@@ -61,7 +61,7 @@ class PaywallerPaywallPurchaseManager{
                 animation: .loadingCircle, animationColor: paywallManager.constants.mainColor) {
                     completionSuccess()
                 } completionFailure: {
-                    
+                    completionFailure()
                 }
 
         case .none:
