@@ -102,7 +102,10 @@ public class PaywallerPaywallPaymentSheetController : UIViewController{
        
         legalView.restoreButtonClicked = { [self] in
             PaywallerPaywallPurchaseManager.restore(paywallManager: paywallManager, controller: self){ [self] in
-                paywallManager.delegate?.restored(from: self)
+                self.dismiss(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                    paywallManager.delegate?.restored(from: self.presentingViewController!)
+                })
             } completionFailure: {
                 
             }
@@ -286,7 +289,11 @@ public class PaywallerPaywallPaymentSheetController : UIViewController{
         
         vibrate(style: .heavy)
         PaywallerPaywallPurchaseManager.subscribe(paywallManager: paywallManager) { [self] in
-            paywallManager.delegate?.purchased(from: self, identifier: paywallManager.constants.selectedPlan.productIdentifier)
+            self.dismiss(animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [self] in
+                paywallManager.delegate?.purchased(from: self.presentingViewController!, identifier: paywallManager.constants.selectedPlan.productIdentifier)
+            })
+          
         }
     }
     
