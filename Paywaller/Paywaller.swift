@@ -18,7 +18,7 @@ public class Paywaller{
         Constants.apiKey = apiKey
     }
     
-    public static func presentPaywall(with provider : PaywallerAppProviderConfiguration, from controller : UIViewController){
+    public static func presentPaywall(with provider : PaywallerPaywallProviderConfiguration, from controller : UIViewController){
         switch provider {
         case .adapty(let selectedPlacementID):
             for paywall in Constants.paywalls{
@@ -46,7 +46,7 @@ public class Paywaller{
         switch provider {
         case .adapty(let apiKey, let placementIDs, let accessLevel):
             AdaptyManager.configure(withAPIKey: apiKey, placementIDs: placementIDs, accessLevel: accessLevel) {
-                fetchPaywalls(for: placementIDs, provider: provider)
+                fetchPaywalls(for: placementIDs)
             }
             break
         case .revenuecat:
@@ -56,13 +56,13 @@ public class Paywaller{
         }
     }
     
-    internal static func fetchPaywalls(for placementIDs : [String],  provider: PaywallerAppProviderConfiguration){
+    internal static func fetchPaywalls(for placementIDs : [String]){
         for placementID in placementIDs {
-            fetchPaywall(for: placementID, provider: provider)
+            fetchPaywall(for: placementID)
         }
     }
     
-    internal static func fetchPaywall(for placementID : String, provider : PaywallerAppProviderConfiguration){
+    internal static func fetchPaywall(for placementID : String){
         let adaptyPaywall = AdaptyManager.getPaywall(placementID: placementID)
         guard let remoteConfig = adaptyPaywall?.remoteConfig as? [String : Any] else {return}
         guard let paywallID = remoteConfig["paywall_id"] as? String else {return}
@@ -72,9 +72,10 @@ public class Paywaller{
             case .success(let dictionary):
                 if let json = dictionary["json"] as? [String : Any]{
                     DispatchQueue.main.async {
+                        let provider = PaywallerPaywallProviderConfiguration.adapty(placementID: placementID)
                         let sectionTypes = PaywallerPaywallJSONWrapper.createSections(from: json)
                         let constants = PaywallerPaywallJSONWrapper.createConstants(from: json)
-                        constants.provider = .adapty(placementID: placementID)
+                        constants.provider = provider
                         
                         let manager = PaywallerPaywallManager()
                         manager.constants = constants
