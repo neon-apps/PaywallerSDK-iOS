@@ -200,6 +200,9 @@ class PaywallerPaywallHorizontalPlanView : UIStackView, AdaptyManagerDelegate{
         }
     }
     
+    
+    
+    
 
     func packageFetched() {
         

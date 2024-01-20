@@ -9,10 +9,11 @@ import Foundation
 import NeonSDK
 import UIKit
 
+@available(iOS 15.0, *)
 public class PaywallerPaywallConstants{
     public var termsURL : String?
     public var privacyURL : String?
-    public var provider = PaywallerPaywallProviderType.revenuecat
+    public var provider = PaywallerPaywallProviderConfiguration.revenuecat
     public var isPaymentSheetActive = Bool()
     public var horizontalPadding = CGFloat()
     public var cornerRadius = CGFloat()

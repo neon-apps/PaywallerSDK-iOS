@@ -8,12 +8,13 @@
 import Foundation
 
 @available(iOS 15.0, *)
-public enum PaywallerProviderConfiguration{
+public enum PaywallerAppProviderConfiguration{
     case adapty(apiKey : String, placementIDs : [String], accessLevel : String)
     case revenuecat
+    case none
 }
-@available(iOS 15.0, *)
-public enum PaywallerProviderPaywallConfiguration{
+
+public enum PaywallerPaywallProviderConfiguration{
     case adapty(placementID : String)
     case revenuecat
     case none

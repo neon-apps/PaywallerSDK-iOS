@@ -28,7 +28,7 @@ public class PaywallerPaywallManager{
         
     }
     public func configure(
-        provider : PaywallerPaywallProviderType,
+        provider : PaywallerPaywallProviderConfiguration,
         isPaymentSheetActive : Bool,
         horizontalPadding: CGFloat,
         cornerRadius: CGFloat,

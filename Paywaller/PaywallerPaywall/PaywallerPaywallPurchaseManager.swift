@@ -64,6 +64,8 @@ class PaywallerPaywallPurchaseManager{
                     
                 }
 
+        case .none:
+            break
         }
     }
 }

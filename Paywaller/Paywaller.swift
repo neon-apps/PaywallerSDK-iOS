@@ -12,13 +12,13 @@ import NeonSDK
 @available(iOS 15.0, *)
 public class Paywaller{
     
-    public static func configure(apiKey : String, provider : PaywallerProviderConfiguration){
+    public static func configure(apiKey : String, provider : PaywallerAppProviderConfiguration){
         configureProvider(provider: provider)
         Font.configureFonts(font: .SFProDisplay)
         Constants.apiKey = apiKey
     }
     
-    public static func presentPaywall(with provider : PaywallerProviderPaywallConfiguration, from controller : UIViewController){
+    public static func presentPaywall(with provider : PaywallerAppProviderConfiguration, from controller : UIViewController){
         switch provider {
         case .adapty(let selectedPlacementID):
             for paywall in Constants.paywalls{
@@ -42,25 +42,27 @@ public class Paywaller{
         }
     }
     
-    internal static func configureProvider(provider : PaywallerProviderConfiguration){
+    internal static func configureProvider(provider : PaywallerAppProviderConfiguration){
         switch provider {
         case .adapty(let apiKey, let placementIDs, let accessLevel):
             AdaptyManager.configure(withAPIKey: apiKey, placementIDs: placementIDs, accessLevel: accessLevel) {
-                fetchPaywalls(for: placementIDs)
+                fetchPaywalls(for: placementIDs, provider: provider)
             }
             break
         case .revenuecat:
             break
+        case .none:
+            break
         }
     }
     
-    internal static func fetchPaywalls(for placementIDs : [String]){
+    internal static func fetchPaywalls(for placementIDs : [String],  provider: PaywallerAppProviderConfiguration){
         for placementID in placementIDs {
-            fetchPaywall(for: placementID)
+            fetchPaywall(for: placementID, provider: provider)
         }
     }
     
-    internal static func fetchPaywall(for placementID : String){
+    internal static func fetchPaywall(for placementID : String, provider : PaywallerAppProviderConfiguration){
         let adaptyPaywall = AdaptyManager.getPaywall(placementID: placementID)
         guard let remoteConfig = adaptyPaywall?.remoteConfig as? [String : Any] else {return}
         guard let paywallID = remoteConfig["paywall_id"] as? String else {return}
@@ -72,6 +74,8 @@ public class Paywaller{
                     DispatchQueue.main.async {
                         let sectionTypes = PaywallerPaywallJSONWrapper.createSections(from: json)
                         let constants = PaywallerPaywallJSONWrapper.createConstants(from: json)
+                        constants.provider = .adapty(placementID: placementID)
+                        
                         let manager = PaywallerPaywallManager()
                         manager.constants = constants
                         
@@ -83,7 +87,7 @@ public class Paywaller{
                         for sectionType in sectionTypes {
                             manager.sections.append(PaywallerPaywallSection(type: sectionType, manager: manager))
                         }
-                        Constants.paywalls.append(PaywallerPaywall(manager: manager, provider: .adapty(placementID: placementID)))
+                        Constants.paywalls.append(PaywallerPaywall(manager: manager, provider: provider))
                     }
          
                 }

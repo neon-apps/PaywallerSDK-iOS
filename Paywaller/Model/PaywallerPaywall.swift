@@ -10,11 +10,11 @@ import NeonSDK
 
 @available(iOS 15.0, *)
 class PaywallerPaywall{
-    internal init(manager: PaywallerPaywallManager = PaywallerPaywallManager(), provider: PaywallerProviderPaywallConfiguration = PaywallerProviderPaywallConfiguration.none) {
+    internal init(manager: PaywallerPaywallManager = PaywallerPaywallManager(), provider: PaywallerAppProviderConfiguration = PaywallerAppProviderConfiguration.none) {
         self.manager = manager
         self.provider = provider
     }
     
     var manager = PaywallerPaywallManager()
-    var provider = PaywallerProviderPaywallConfiguration.none
+    var provider = PaywallerAppProviderConfiguration.none
 }
