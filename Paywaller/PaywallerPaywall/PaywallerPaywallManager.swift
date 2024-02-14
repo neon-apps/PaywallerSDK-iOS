@@ -61,27 +61,30 @@ public class PaywallerPaywallManager{
         constants.ctaButtonTextColor = ctaButtonTextColor
         constants.termsURL = termsURL
         constants.privacyURL = privacyURL
-      }
+    }
     
     public func present(from controller : UIViewController){
-        controller.present(destinationVC: PaywallerPaywallController(), slideDirection: .up)
-      
+        let paywall = PaywallerPaywallController()
+        paywall.paywallManager = self
+        controller.present(destinationVC: paywall, slideDirection: .up)
+        
     }
-  
+    
     
     public func addSection(type : PaywallerPaywallSectionType){
         sections.append(PaywallerPaywallSection(type: type, manager: self))
+        
     }
     
     public func copy() -> PaywallerPaywallManager {
-            let copiedManager = PaywallerPaywallManager()
-            copiedManager.delegate = self.delegate
-            copiedManager.constants = self.constants.copy()
-            for section in self.sections {
-                copiedManager.sections.append(section.copy(with: copiedManager))
-            }
-
-            return copiedManager
+        let copiedManager = PaywallerPaywallManager()
+        copiedManager.delegate = self.delegate
+        copiedManager.constants = self.constants.copy()
+        for section in self.sections {
+            copiedManager.sections.append(section.copy(with: copiedManager))
         }
+        
+        return copiedManager
+    }
     
 }

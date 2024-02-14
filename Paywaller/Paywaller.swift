@@ -80,9 +80,6 @@ public class Paywaller{
                         let manager = PaywallerPaywallManager()
                         manager.constants = constants
                         
-                        let paywall = PaywallerPaywallController()
-                        paywall.paywallManager = manager
-                                                
                         for sectionType in sectionTypes {
                             manager.sections.append(PaywallerPaywallSection(type: sectionType, manager: manager))
                         }
