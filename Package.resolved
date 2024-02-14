@@ -138,10 +138,10 @@
     {
       "identity" : "neon-sdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://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@github.com/neon-apps/neon-sdk.git",
+      "location" : "https://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@github.com/neon-apps/neon-sdk.git",
       "state" : {
         "branch" : "main",
-        "revision" : "f3701f144823d4beadfb404cac10a7371096002c"
+        "revision" : "93c9d31e915e316e73f628ac1133f6194c0bfe96"
       }
     },
     {
