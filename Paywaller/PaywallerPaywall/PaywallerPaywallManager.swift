@@ -19,7 +19,6 @@ public protocol PaywallerDelegate {
 @available(iOS 15.0, *)
 public class PaywallerPaywallManager{
     
-    public var paywall : PaywallerPaywallController?
     public var sections = [PaywallerPaywallSection]()
     public var delegate : PaywallerDelegate?
     public var constants = PaywallerPaywallConstants()
@@ -62,39 +61,20 @@ public class PaywallerPaywallManager{
         constants.ctaButtonTextColor = ctaButtonTextColor
         constants.termsURL = termsURL
         constants.privacyURL = privacyURL
-          paywall = PaywallerPaywallController()
       }
     
     public func present(from controller : UIViewController){
-        if paywall != nil{
-            controller.present(destinationVC: paywall!, slideDirection: .up)
-        }else{
-           fatalError("You should configure paywall with PaywallerPaywallManager.configure method before present it.")
-        }
+        controller.present(destinationVC: PaywallerPaywallController(), slideDirection: .up)
       
     }
-    public func getPaywall() -> UIViewController{
-        if paywall != nil{
-            return paywall!
-        }else{
-           fatalError("You should configure paywall with PaywallerPaywallManager.configure method before present it.")
-        }
-      
-    }
+  
     
     public func addSection(type : PaywallerPaywallSectionType){
-        if paywall != nil{
-            sections.append(PaywallerPaywallSection(type: type, manager: self))
-        }else{
-           fatalError("You should configure paywall with PaywallerPaywallManager.configure method before adding sections.")
-        }
-       
+        sections.append(PaywallerPaywallSection(type: type, manager: self))
     }
     
     public func copy() -> PaywallerPaywallManager {
             let copiedManager = PaywallerPaywallManager()
-
-            copiedManager.paywall = self.paywall
             copiedManager.delegate = self.delegate
             copiedManager.constants = self.constants.copy()
             for section in self.sections {

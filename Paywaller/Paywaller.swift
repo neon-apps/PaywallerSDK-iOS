@@ -82,9 +82,7 @@ public class Paywaller{
                         
                         let paywall = PaywallerPaywallController()
                         paywall.paywallManager = manager
-                        
-                        manager.paywall = paywall
-                        
+                                                
                         for sectionType in sectionTypes {
                             manager.sections.append(PaywallerPaywallSection(type: sectionType, manager: manager))
                         }
