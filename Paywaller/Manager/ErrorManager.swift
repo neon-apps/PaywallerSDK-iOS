@@ -7,9 +7,20 @@
 
 import Foundation
 
-class ErrorManager{
+public class WarningManager{
     
-    static func showWarning(title : String, subtitle : String){
-        
+    public enum Warning{
+        case addAtLeast2ItemsToUseTimeline
+        case cantShowMonthlyPriceForWeeklySubscription
+        case cantMakeMoreThanOnePlanSelected
+        case selectAtLeastOnePlanSelected
+    }
+    
+    public static var warnings = [Warning]()
+    
+    static func addWarning(warning : Warning){
+        if !warnings.contains(warning){
+            warnings.append(warning)
+        }
     }
 }

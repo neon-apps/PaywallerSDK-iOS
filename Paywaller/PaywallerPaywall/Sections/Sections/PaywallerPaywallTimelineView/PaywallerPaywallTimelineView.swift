@@ -53,7 +53,7 @@ class PaywallerPaywallTimelineView : BasePaywallerPaywallSectionView{
     func configureLineView(){
         
         if itemsStackView.subviews.count < 2{
-            ErrorManager.showWarning(title: "Ops!", subtitle: "You have to add at least 2 items to use timeline section.")
+            WarningManager.addWarning(warning: .addAtLeast2ItemsToUseTimeline)
             return
         }
         

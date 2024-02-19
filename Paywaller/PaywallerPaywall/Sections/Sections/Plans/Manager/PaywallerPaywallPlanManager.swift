@@ -226,7 +226,8 @@ class PaywallerPaywallPlanManager {
     func calculateMonthCount(unit : SKProduct.PeriodUnit, numberOfUnits : Int) -> Int{
         switch unit {
         case .day:
-            fatalError("You can't show monthly price for a weekly subscription.")
+            WarningManager.addWarning(warning: .cantShowMonthlyPriceForWeeklySubscription)
+            return 0
         case .week:
             return Int(numberOfUnits / 4)
         case .month:
@@ -345,9 +346,9 @@ class PaywallerPaywallPlanManager {
         let defaultSelectedPlanCount =  allPlans.filter({$0.isDefaultSelected}).count
         
         if defaultSelectedPlanCount == 0{
-            fatalError("You have to select one plan as a default selected one. You should add isDefaultSelected parameter as true while initalization of the plan.")
+            WarningManager.addWarning(warning: .selectAtLeastOnePlanSelected)
         }else if defaultSelectedPlanCount > 1{
-            fatalError("You can't make more than 1 plan default selected. Please make sure that you only add isDefaultSelected parameter as true for 1 plan")
+            WarningManager.addWarning(warning: .cantMakeMoreThanOnePlanSelected)
         }
         
         if plan.isDefaultSelected{
