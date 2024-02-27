@@ -18,9 +18,11 @@ public class WarningManager{
     
     public static var warnings = [Warning]()
     
-    static func addWarning(warning : Warning){
+    static func add(warning : Warning){
         if !warnings.contains(warning){
             warnings.append(warning)
         }
     }
+    
+    
 }

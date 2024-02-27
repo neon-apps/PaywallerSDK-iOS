@@ -226,7 +226,7 @@ class PaywallerPaywallPlanManager {
     func calculateMonthCount(unit : SKProduct.PeriodUnit, numberOfUnits : Int) -> Int{
         switch unit {
         case .day:
-            WarningManager.addWarning(warning: .cantShowMonthlyPriceForWeeklySubscription)
+            WarningManager.add(warning: .cantShowMonthlyPriceForWeeklySubscription)
             return 0
         case .week:
             return Int(numberOfUnits / 4)
@@ -346,9 +346,9 @@ class PaywallerPaywallPlanManager {
         let defaultSelectedPlanCount =  allPlans.filter({$0.isDefaultSelected}).count
         
         if defaultSelectedPlanCount == 0{
-            WarningManager.addWarning(warning: .selectAtLeastOnePlanSelected)
+            WarningManager.add(warning: .selectAtLeastOnePlanSelected)
         }else if defaultSelectedPlanCount > 1{
-            WarningManager.addWarning(warning: .cantMakeMoreThanOnePlanSelected)
+            WarningManager.add(warning: .cantMakeMoreThanOnePlanSelected)
         }
         
         if plan.isDefaultSelected{
