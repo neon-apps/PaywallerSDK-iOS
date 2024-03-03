@@ -87,7 +87,7 @@ class PaywallerPaywallPlanManager {
            let unit = product.subscriptionPeriod?.unit{
             let price = product.price
             let (unitString, durationLabelText) = getUnitString(unit: unit, numberOfUnits: numberOfUnits)
-            durationLabel.text = durationLabelText
+            durationLabel.text = plan?.title ?? durationLabelText
             let currencyCode = product.priceLocale.currencyCode
             let currencySymbol = NeonCurrencyManager.getCurrencySymbol(for: currencyCode ?? "USD") ?? "$"
             let formattedPrice = formatPrice(price: price)
