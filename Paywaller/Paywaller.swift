@@ -15,13 +15,13 @@ public class Paywaller{
     public static func configure(apiKey : String, provider : PaywallerAppProviderConfiguration){
         configureProvider(provider: provider)
         Font.configureFonts(font: .SFProDisplay)
-        Constants.apiKey = apiKey
+        PaywallerConstants.apiKey = apiKey
     }
     
     public static func presentPaywall(with provider : PaywallerPaywallProviderConfiguration, from controller : UIViewController, delegate : PaywallerDelegate? = nil){
         switch provider {
         case .adapty(let selectedPlacementID):
-            for paywall in Constants.paywalls{
+            for paywall in PaywallerConstants.paywalls{
                 switch paywall.provider {
                 case .adapty(let paywallPlacementID):
                     if selectedPlacementID == paywallPlacementID{
@@ -83,7 +83,7 @@ public class Paywaller{
                         for sectionType in sectionTypes {
                             manager.sections.append(PaywallerPaywallSection(type: sectionType, manager: manager))
                         }
-                        Constants.paywalls.append(PaywallerPaywall(manager: manager, provider: provider))
+                        PaywallerConstants.paywalls.append(PaywallerPaywall(manager: manager, provider: provider))
                     }
          
                 }

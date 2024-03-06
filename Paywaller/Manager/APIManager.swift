@@ -24,7 +24,7 @@ class APIManager {
         
 
         
-        urlString += "?api_key=\(Constants.apiKey)"
+        urlString += "?api_key=\(PaywallerConstants.apiKey)"
         
         if let id = id {
             urlString += "&id=\(id)"
