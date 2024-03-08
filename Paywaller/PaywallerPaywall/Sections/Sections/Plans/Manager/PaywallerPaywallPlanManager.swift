@@ -109,7 +109,7 @@ class PaywallerPaywallPlanManager {
             let price = product.price
             let weekCount = calculateWeekCount(unit: unit, numberOfUnits: numberOfUnits)
             let (_, durationLabelText) = getUnitString(unit: unit, numberOfUnits: numberOfUnits)
-            durationLabel.text = durationLabelText
+            durationLabel.text = plan?.title ?? durationLabelText
             let currencyCode = product.priceLocale.currencyCode
             let currencySymbol = NeonCurrencyManager.getCurrencySymbol(for: currencyCode ?? "USD") ?? "$"
             let pricePerWeek = calculatePricePerUnit(numberOfUnits: weekCount, price: price)
@@ -125,7 +125,7 @@ class PaywallerPaywallPlanManager {
             let price = product.price
             let monthCount = calculateMonthCount(unit: unit, numberOfUnits: numberOfUnits)
             let (_, durationLabelText) = getUnitString(unit: unit, numberOfUnits: numberOfUnits)
-            durationLabel.text = durationLabelText
+            durationLabel.text = plan?.title ?? durationLabelText
             let currencyCode = product.priceLocale.currencyCode
             let currencySymbol = NeonCurrencyManager.getCurrencySymbol(for: currencyCode ?? "USD") ?? "$"
             let pricePerMonth = calculatePricePerUnit(numberOfUnits: monthCount, price: price)
@@ -204,7 +204,7 @@ class PaywallerPaywallPlanManager {
         let currencySymbol = NeonCurrencyManager.getCurrencySymbol(for: currencyCode ?? "USD") ?? "$"
         let formattedPrice = formatPrice(price: price)
         unitCostLabel.text = "\(currencySymbol)\(price)"
-        durationLabel.text = "Lifetime"
+        durationLabel.text = plan?.title ?? "Lifetime"
         
     }
     
