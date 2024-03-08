@@ -28,6 +28,7 @@ class PaywallerPaywallVerticalPlanView : UIView, AdaptyManagerDelegate{
             packageFetched()
             planManager.calculateSaveLabel(saveLabel: saveLabel)
             planManager.calculateTagLabel(tagLabel: tagLabel)
+            adjustPlaceholderPrices()
             if planManager.isDefaultPlan(){
                 selectPlan()
             }
