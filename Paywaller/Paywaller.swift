@@ -27,9 +27,13 @@ public class Paywaller{
     private static func configure(provider : PaywallerPaywallProviderConfiguration, on controller : UIViewController, with delegate : PaywallerDelegate?){
         Font.configureFonts(font: .SFProDisplay)
         PaywallerConstants.apiKey = self.apiKey
-        LottieManager.showFullScreenLottie(animation: .loadingCircle2, color: .white)
+        DispatchQueue.main.async {
+            LottieManager.showFullScreenLottie(animation: .loadingCircle2, color: .white)
+        }
         configureProvider(provider: self.provider, completion: {
-            LottieManager.removeFullScreenLottie()
+            DispatchQueue.main.async {
+                LottieManager.removeFullScreenLottie()
+            }x
             if !PaywallerConstants.paywalls.isEmpty{
                 presentPaywall(with: provider, from: controller, delegate: delegate)
             }
