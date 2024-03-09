@@ -33,12 +33,12 @@ public class Paywaller{
         configureProvider(provider: self.provider, completion: {
             DispatchQueue.main.async {
                 LottieManager.removeFullScreenLottie()
-            }
-            if !PaywallerConstants.paywalls.isEmpty{
-                presentPaywall(with: provider, from: controller, delegate: delegate)
+                if !PaywallerConstants.paywalls.isEmpty{
+                    presentPaywall(with: provider, from: controller, delegate: delegate)
+                }
             }
         })
-      
+        
     }
     
     public static func presentPaywall(with provider : PaywallerPaywallProviderConfiguration, from controller : UIViewController, delegate : PaywallerDelegate? = nil){
@@ -121,7 +121,7 @@ public class Paywaller{
                         }
                         PaywallerConstants.paywalls.append(PaywallerPaywall(manager: manager, provider: provider))
                     }
-         
+                    
                 }
             case .failure(let failure):
                 print(failure)
