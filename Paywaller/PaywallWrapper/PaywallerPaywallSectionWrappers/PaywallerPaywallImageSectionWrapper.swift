@@ -8,17 +8,20 @@
 import Foundation
 import UIKit
 import NeonSDK
-
+import SDWebImage
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createImageSection(fromDict dict: [String: Any]) -> PaywallerPaywallSectionType? {
         if let height = dict["height"] as? CGFloat,
-           let url = dict["url"] as? String,
+           let urlString = dict["url"] as? String,
            let cornerRadius = dict["cornerRadious"] as? CGFloat,
            let horizontalPadding = dict["horizontalPadding"] as? CGFloat,
            let contentModeRaw = dict["contentMode"] as? String,
            let contentMode = contentModeFromString(contentModeRaw) {
-            return .imageWithURL(height: height, url: url, cornerRadious: cornerRadius, horizontalPadding: horizontalPadding, contentMode: contentMode)
+            if let url = URL(string: urlString){
+                SDWebImagePrefetcher.shared.prefetchURLs([url])
+            }
+            return .imageWithURL(height: height, url: urlString, cornerRadious: cornerRadius, horizontalPadding: horizontalPadding, contentMode: contentMode)
         }
         return nil
     }

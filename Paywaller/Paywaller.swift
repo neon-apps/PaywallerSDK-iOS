@@ -12,13 +12,28 @@ import NeonSDK
 @available(iOS 15.0, *)
 public class Paywaller{
     
+    private static var apiKey = String()
+    private static var provider = PaywallerAppProviderConfiguration.none
+    
     public static func configure(apiKey : String, provider : PaywallerAppProviderConfiguration){
+        self.apiKey = apiKey
+        self.provider = provider
         configureProvider(provider: provider)
         Font.configureFonts(font: .SFProDisplay)
         PaywallerConstants.apiKey = apiKey
     }
+    private static func configure(){
+        configureProvider(provider: self.provider)
+        Font.configureFonts(font: .SFProDisplay)
+        PaywallerConstants.apiKey = self.apiKey
+    }
     
     public static func presentPaywall(with provider : PaywallerPaywallProviderConfiguration, from controller : UIViewController, delegate : PaywallerDelegate? = nil){
+        
+        if PaywallerConstants.paywalls.isEmpty{
+            configure()
+            return
+        }
         switch provider {
         case .adapty(let selectedPlacementID):
             for paywall in PaywallerConstants.paywalls{
