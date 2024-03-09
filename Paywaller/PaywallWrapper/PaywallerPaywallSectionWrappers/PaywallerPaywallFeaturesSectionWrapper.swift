@@ -8,6 +8,7 @@
 import Foundation
 import NeonSDK
 import UIKit
+import SDWebImage
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
@@ -30,6 +31,11 @@ extension PaywallerPaywallJSONWrapper {
         for itemDict in dicts {
             if let text = itemDict["text"] as? String,
                let iconURL = itemDict["iconURL"] as? String{
+                
+                if let url = URL(string: iconURL){
+                    SDWebImagePrefetcher.shared.prefetchURLs([url])
+                }
+                
                 let item = NeonPaywallFeature(title: text, iconURL: iconURL)
                 items.append(item)
             }

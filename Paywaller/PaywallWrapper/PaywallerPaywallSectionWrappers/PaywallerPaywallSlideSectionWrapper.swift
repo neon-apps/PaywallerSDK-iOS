@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import NeonSDK
+import SDWebImage
 
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
@@ -22,6 +23,10 @@ extension PaywallerPaywallJSONWrapper {
                    let secondImageURL = itemData["secondImageURL"] as? String,
                    let title = itemData["title"] as? String,
                    let subtitle = itemData["subtitle"] as? String {
+                    
+                    if let firstImage = URL(string: firstImageURL), let secondImage = URL(string: secondImageURL){
+                        SDWebImagePrefetcher.shared.prefetchURLs([firstImage, secondImage])
+                    }
                     
                     let slideItem = NeonSlideItem(firstImageURL: firstImageURL, secondImageURL: secondImageURL, title: title, subtitle: subtitle)
                     items.append(slideItem)
