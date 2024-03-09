@@ -18,20 +18,29 @@ public class Paywaller{
     public static func configure(apiKey : String, provider : PaywallerAppProviderConfiguration){
         self.apiKey = apiKey
         self.provider = provider
-        configureProvider(provider: provider)
+        configureProvider(provider: provider, completion: {
+            
+        })
         Font.configureFonts(font: .SFProDisplay)
         PaywallerConstants.apiKey = apiKey
     }
-    private static func configure(){
-        configureProvider(provider: self.provider)
+    private static func configure(provider : PaywallerPaywallProviderConfiguration, on controller : UIViewController, with delegate : PaywallerDelegate?){
         Font.configureFonts(font: .SFProDisplay)
         PaywallerConstants.apiKey = self.apiKey
+        LottieManager.showFullScreenLottie(animation: .loadingCircle2, color: .white)
+        configureProvider(provider: self.provider, completion: {
+            LottieManager.removeFullScreenLottie()
+            if !PaywallerConstants.paywalls.isEmpty{
+                presentPaywall(with: provider, from: controller, delegate: delegate)
+            }
+        })
+      
     }
     
     public static func presentPaywall(with provider : PaywallerPaywallProviderConfiguration, from controller : UIViewController, delegate : PaywallerDelegate? = nil){
         
         if PaywallerConstants.paywalls.isEmpty{
-            configure()
+            configure(provider : provider, on: controller, with: delegate)
             return
         }
         switch provider {
@@ -57,11 +66,13 @@ public class Paywaller{
         }
     }
     
-    internal static func configureProvider(provider : PaywallerAppProviderConfiguration){
+    internal static func configureProvider(provider : PaywallerAppProviderConfiguration, completion : @escaping () -> ()){
         switch provider {
         case .adapty(let apiKey, let placementIDs, let accessLevel):
             AdaptyManager.configure(withAPIKey: apiKey, placementIDs: placementIDs, accessLevel: accessLevel) {
-                fetchPaywalls(for: placementIDs)
+                fetchPaywalls(for: placementIDs, completion: {
+                    completion()
+                })
             }
             break
         case .revenuecat:
@@ -71,13 +82,19 @@ public class Paywaller{
         }
     }
     
-    internal static func fetchPaywalls(for placementIDs : [String]){
+    internal static func fetchPaywalls(for placementIDs : [String], completion : @escaping () -> ()){
+        var fetchedPaywallCount = 0
         for placementID in placementIDs {
-            fetchPaywall(for: placementID)
+            fetchPaywall(for: placementID, completion: {
+                fetchedPaywallCount += 1
+                if fetchedPaywallCount == placementIDs.count{
+                    completion()
+                }
+            })
         }
     }
     
-    internal static func fetchPaywall(for placementID : String){
+    internal static func fetchPaywall(for placementID : String, completion : @escaping () -> ()){
         let adaptyPaywall = AdaptyManager.getPaywall(placementID: placementID)
         guard let remoteConfig = adaptyPaywall?.remoteConfig as? [String : Any] else {return}
         guard let paywallID = remoteConfig["paywall_id"] as? String else {return}
@@ -105,6 +122,8 @@ public class Paywaller{
             case .failure(let failure):
                 print(failure)
             }
+            
+            completion()
         })
     }
     
