@@ -33,7 +33,7 @@ public class Paywaller{
         configureProvider(provider: self.provider, completion: {
             DispatchQueue.main.async {
                 LottieManager.removeFullScreenLottie()
-            }x
+            }
             if !PaywallerConstants.paywalls.isEmpty{
                 presentPaywall(with: provider, from: controller, delegate: delegate)
             }
