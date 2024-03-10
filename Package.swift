@@ -19,7 +19,7 @@ let package = Package(
     dependencies: [
         
         
-        .package(name: "NeonSDK", url: "git@github.com/neon-apps/neon-sdk.git", branch: "main"),
+        .package(name: "NeonSDK", url: "https://github.com/neon-apps/neon-sdk.git", branch: "main"),
       
        
         // Dependencies declare other packages that this package depends on.
