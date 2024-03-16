@@ -67,7 +67,6 @@ extension PaywallerPaywallJSONWrapper {
             ]
             if var dataDict = planComparisonDict["data"] as? [String: Any] {
                 dataDict["items"] = (dataDict["items"] as? [[String: Any]] ?? []) + [itemDict]
-                dataDict["horizontalPadding" : horizontalPadding]
                 planComparisonDict["data"] = dataDict
                 
             }
