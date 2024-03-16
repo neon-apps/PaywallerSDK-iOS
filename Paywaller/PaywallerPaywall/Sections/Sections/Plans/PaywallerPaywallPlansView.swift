@@ -19,15 +19,17 @@ public class PaywallerPaywallPlansView : BasePaywallerPaywallSectionView, Paywal
     let stackView = UIStackView()
     var type = PaywallerPaywallPlanViewType.horizontal
     var shouldUsePlaceholders = Bool()
+    var horizontalPadding = CGFloat()
     public override func configureSection(type: PaywallerPaywallSectionType) {
         
       
        
     
         switch type {
-        case .plans(let type, let plans, let shouldUsePlaceholders):
+        case .plans(let type, let plans, let shouldUsePlaceholders, let horizontalPadding):
             self.type = type
             manager.constants.allPlans = plans
+            self.horizontalPadding = horizontalPadding
             self.shouldUsePlaceholders = shouldUsePlaceholders
             plans.forEach({addItem(item: $0, allItems: plans)})
             break
@@ -55,7 +57,7 @@ public class PaywallerPaywallPlansView : BasePaywallerPaywallSectionView, Paywal
                     make.width.equalTo(manager.constants.allPlans.count * 130)
                     stackView.spacing = 20
                 }else{
-                    make.left.right.equalToSuperview()
+                    make.left.right.equalToSuperview().inset(horizontalPadding)
                     stackView.spacing = 10
                 }
                 make.centerX.equalToSuperview()
@@ -69,7 +71,7 @@ public class PaywallerPaywallPlansView : BasePaywallerPaywallSectionView, Paywal
             stackView.spacing = 15
             addSubview(stackView)
             stackView.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.left.right.equalToSuperview().inset(horizontalPadding)
                 make.top.equalToSuperview()
             }
             

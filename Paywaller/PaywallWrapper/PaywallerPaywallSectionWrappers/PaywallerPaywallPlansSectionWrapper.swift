@@ -16,6 +16,7 @@ extension PaywallerPaywallJSONWrapper {
            let type = planViewTypeFromString(typeRaw),
            let itemsData = dict["items"] as? [[String: Any]] {
             
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
             var plans: [PaywallerPaywallPlan] = []
             for itemData in itemsData {
                 
@@ -32,7 +33,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .plans(type: type, items: plans, shouldUsePlaceholders: false)
+            return .plans(type: type, items: plans, shouldUsePlaceholders: false, horizontalPadding: horizontalPadding)
         }
         return nil
     }
@@ -65,7 +66,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createPlansJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .plans(type, items, _) = section else {
+        guard case let .plans(type, items, _, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .plans
         }
         
@@ -78,7 +79,7 @@ extension PaywallerPaywallJSONWrapper {
         var itemsArray: [[String: Any]] = []
         
         dataDict["type"] = planViewTypeToString(type)
-        
+        dataDict["horizontalPadding"] = horizontalPadding
         for item in items {
             var itemDict: [String: Any] = [
                 "isDefaultSelected": item.isDefaultSelected,
