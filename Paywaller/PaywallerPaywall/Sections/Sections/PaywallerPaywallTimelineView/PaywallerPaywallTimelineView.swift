@@ -49,7 +49,7 @@ class PaywallerPaywallTimelineView : BasePaywallerPaywallSectionView{
    
            itemsStackView.snp.makeConstraints { make in
                make.top.equalToSuperview().offset(30)
-               make.left.right.equalToSuperview().inset(manager.constants.horizontalPadding)
+               make.left.right.equalToSuperview().inset(manager.constants.horizontalPadding + horizontalPadding + 10)
            }
        }
        
@@ -76,7 +76,7 @@ class PaywallerPaywallTimelineView : BasePaywallerPaywallSectionView{
                make.bottom.equalTo(itemsStackView.snp.bottom)
            }
            containerView.snp.makeConstraints { make in
-               make.left.right.equalToSuperview().inset(horizontalPadding)
+               make.left.right.equalToSuperview().inset(manager.constants.horizontalPadding + horizontalPadding)
                make.top.equalToSuperview()
                make.bottom.equalToSuperview()
            }

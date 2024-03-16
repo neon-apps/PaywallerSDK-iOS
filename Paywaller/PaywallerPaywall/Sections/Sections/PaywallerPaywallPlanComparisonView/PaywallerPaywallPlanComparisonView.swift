@@ -166,7 +166,7 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
         featureView.layer.borderWidth = manager.constants.containerBorderWidth
         featureView.backgroundColor = manager.constants.containerColor
         featureView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.left.right.equalToSuperview().inset(horizontalPadding)
             make.bottom.equalTo(featureLabel.snp.bottom).offset(15)
         }
     
