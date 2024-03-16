@@ -14,7 +14,13 @@ public class Paywaller{
     
     private static var apiKey = String()
     private static var provider = PaywallerAppProviderConfiguration.none
-    
+    private static var remoteConfigs = [String : [String:Any]]()
+    public static func getRemoteConfigValue(placement : String, key: String) -> Any?{
+        if let remoteConfig = remoteConfigs[placement] , let configValue = remoteConfig["key"]{
+            return configValue
+        }
+        return nil
+    }
     public static func configure(apiKey : String, provider : PaywallerAppProviderConfiguration){
         self.apiKey = apiKey
         self.provider = provider
@@ -101,6 +107,7 @@ public class Paywaller{
     internal static func fetchPaywall(for placementID : String, completion : @escaping () -> ()){
         let adaptyPaywall = AdaptyManager.getPaywall(placementID: placementID)
         guard let remoteConfig = adaptyPaywall?.remoteConfig as? [String : Any] else {return}
+        remoteConfigs[placementID] = remoteConfig
         guard let paywallID = remoteConfig["paywall_id"] as? String else {return}
         
         APIManager.shared.getPaywall(id: paywallID, completion: { result in
