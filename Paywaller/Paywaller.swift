@@ -16,7 +16,7 @@ public class Paywaller{
     private static var provider = PaywallerAppProviderConfiguration.none
     private static var remoteConfigs = [String : [String:Any]]()
     public static func getRemoteConfigValue(placement : String, key: String) -> Any?{
-        if let remoteConfig = remoteConfigs[placement] , let configValue = remoteConfig["key"]{
+        if let remoteConfig = remoteConfigs[placement] , let configValue = remoteConfig[key]{
             return configValue
         }
         return nil
