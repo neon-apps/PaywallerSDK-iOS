@@ -86,7 +86,7 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
    
            itemsStackView.snp.makeConstraints { make in
                make.top.equalTo(basicLabel.snp.bottom).offset(15)
-               make.left.right.equalToSuperview()
+               make.left.right.equalToSuperview().inset(horizontalPadding)
            }
        }
        
@@ -166,7 +166,7 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
         featureView.layer.borderWidth = manager.constants.containerBorderWidth
         featureView.backgroundColor = manager.constants.containerColor
         featureView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(horizontalPadding)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(featureLabel.snp.bottom).offset(15)
         }
     
