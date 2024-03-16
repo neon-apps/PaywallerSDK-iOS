@@ -14,6 +14,8 @@ extension PaywallerPaywallJSONWrapper {
         var configuration: [String: Any] = [:]
 
         // Populate the configuration dictionary with values from the constants object
+        configuration["privacyURL"] = constants.privacyURL
+        configuration["termsURL"] = constants.termsURL
         configuration["isPaymentSheetActive"] = constants.isPaymentSheetActive
         configuration["horizontalPadding"] = constants.horizontalPadding
         configuration["cornerRadius"] = constants.cornerRadius

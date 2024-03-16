@@ -20,6 +20,14 @@ extension PaywallerPaywallJSONWrapper {
                 constants.isPaymentSheetActive = isPaymentSheetActive
             }
             
+            if let privacyURL = configuration["privacyURL"] as? String {
+                constants.privacyURL = privacyURL
+            }
+            
+            if let termsURL = configuration["termsURL"] as? String {
+                constants.termsURL = termsURL
+            }
+            
             if let horizontalPadding = configuration["horizontalPadding"] as? CGFloat {
                 constants.horizontalPadding = horizontalPadding
             }
