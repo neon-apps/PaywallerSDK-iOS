@@ -16,12 +16,12 @@ class PaywallerPaywallWhatYouWillGetView : BasePaywallerPaywallSectionView{
     var containerView = UIView()
        var titleLabel = UILabel()
        var itemsStackView = UIStackView()
-       
+       var horizontalPadding = CGFloat()
        override func configureSection(type: PaywallerPaywallSectionType) {
-           configureView()
-           setConstraint()
+        
            switch type {
-           case .whatYouWillGet(let title, let hasContainer, let items):
+           case .whatYouWillGet(let title, let hasContainer, let items, let horizontalPadding):
+               self.horizontalPadding = horizontalPadding
                containerView.backgroundColor = hasContainer ? manager.constants.containerColor : .clear
                containerView.layer.borderColor = hasContainer ? manager.constants.containerBorderColor.cgColor : UIColor.clear.cgColor
                items.forEach { addItem($0) }
@@ -29,6 +29,9 @@ class PaywallerPaywallWhatYouWillGetView : BasePaywallerPaywallSectionView{
            default:
                fatalError("Something went wrong with PaywallerPaywall. Please consult to manager.")
            }
+           
+           configureView()
+           setConstraint()
        }
        
        func configureView() {
@@ -74,7 +77,8 @@ class PaywallerPaywallWhatYouWillGetView : BasePaywallerPaywallSectionView{
                make.bottom.equalTo(itemsStackView.snp.bottom)
            }
            containerView.snp.makeConstraints { make in
-               make.left.right.top.equalToSuperview()
+               make.top.equalToSuperview()
+               make.left.right.equalToSuperview().inset(horizontalPadding)
                make.bottom.equalToSuperview()
            }
        }

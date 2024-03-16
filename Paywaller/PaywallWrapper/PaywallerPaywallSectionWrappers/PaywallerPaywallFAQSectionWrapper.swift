@@ -15,6 +15,8 @@ extension PaywallerPaywallJSONWrapper {
         if let title = dict["title"] as? String,
            let itemsData = dict["items"] as? [[String: Any]] {
             
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            
             var items: [PaywallerPaywallFAQItem] = []
             for itemData in itemsData {
                 if let question = itemData["question"] as? String,
@@ -26,7 +28,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .faq(title: title,  items: items)
+            return .faq(title: title,  items: items, horizontalPadding : horizontalPadding)
         }
         return nil
     }
@@ -34,7 +36,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createFAQJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .faq(title, items) = section else {
+        guard case let .faq(title, items, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .faq
         }
         
@@ -43,6 +45,7 @@ extension PaywallerPaywallJSONWrapper {
             "type": "faq",
             "data": [
                 "title": title,
+                "horizontalPadding": horizontalPadding,
                 "items": []
             ]
         ]

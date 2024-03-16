@@ -16,7 +16,10 @@ extension PaywallerPaywallJSONWrapper {
            let subtitle = dict["subtitle"] as? String,
            let author = dict["author"] as? String?,
            let imageURL = dict["imageURL"] as? String? { // Change parameter name here
-            return .testimonialCard(title: title, subtitle: subtitle, author: author, overrideImageWithURL: imageURL)
+            
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            
+            return .testimonialCard(title: title, subtitle: subtitle, author: author, overrideImageWithURL: imageURL, horizontalPadding: horizontalPadding)
         }
         return nil
     }
@@ -26,7 +29,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createTestimonialCardJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .testimonialCard(title, subtitle, author, image, imageURL) = section else {
+        guard case let .testimonialCard(title, subtitle, author, image, imageURL, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .testimonialCard
         }
         
@@ -35,7 +38,8 @@ extension PaywallerPaywallJSONWrapper {
             "type": "testimonialCard",
             "data": [
                 "title": title,
-                "subtitle": subtitle
+                "subtitle": subtitle,
+                "horizontalPadding" : horizontalPadding
             ]
         ]
         

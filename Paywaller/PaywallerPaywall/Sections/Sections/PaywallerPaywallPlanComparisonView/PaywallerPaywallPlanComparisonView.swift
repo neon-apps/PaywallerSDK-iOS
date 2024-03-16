@@ -15,14 +15,16 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
     var basicLabel = UILabel()
     let lblPremium = NeonPaddingLabel()
     var containerView = UIView()
-    
+    var horizontalPadding = CGFloat()
+
        var itemsStackView = UIStackView()
        var allItems = [PaywallerPaywallPlanComparisonItem]()
        override func configureSection(type: PaywallerPaywallSectionType) {
-           configureView()
-           setConstraint()
+         
            switch type {
-           case .planComparison(let items):
+           case .planComparison(let items, let horizontalPadding):
+               self.horizontalPadding = horizontalPadding
+
                allItems = items
                items.forEach { item in
                    addItem(item)
@@ -30,6 +32,9 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
            default:
                fatalError("Something went wrong with PaywallerPaywall. Please consult to manager.")
            }
+           
+           configureView()
+           setConstraint()
            
            lblPremium.snp.makeConstraints { make in
                make.top.equalToSuperview().offset(20)
@@ -39,6 +44,7 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
                make.centerY.equalTo(lblPremium)
                make.centerX.equalTo(itemsStackView.subviews.first!.subviews[2].snp.centerX)
            }
+           
        }
        
        func configureView() {
@@ -90,7 +96,8 @@ class PaywallerPaywallPlanComparisonView : BasePaywallerPaywallSectionView{
                make.bottom.equalTo(itemsStackView.snp.bottom).offset(20)
            }
            containerView.snp.makeConstraints { make in
-               make.left.right.top.equalToSuperview()
+               make.top.equalToSuperview()
+               make.left.right.equalToSuperview().inset(horizontalPadding)
                make.bottom.equalToSuperview()
            }
        }

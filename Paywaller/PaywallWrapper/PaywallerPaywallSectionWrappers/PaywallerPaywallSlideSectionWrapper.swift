@@ -17,6 +17,8 @@ extension PaywallerPaywallJSONWrapper {
            let showBeforeAfterBadges = dict["showBeforeAfterBadges"] as? Bool,
            let itemsData = dict["items"] as? [[String: Any]] {
             
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            
             var items: [NeonSlideItem] = []
             for itemData in itemsData {
                 if let firstImageURL = itemData["firstImageURL"] as? String,
@@ -33,7 +35,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .slide(height: height, showBeforeAfterBadges: showBeforeAfterBadges, items: items)
+            return .slide(height: height, showBeforeAfterBadges: showBeforeAfterBadges, items: items, horizontalPadding: horizontalPadding)
         }
         return nil
     }
@@ -41,7 +43,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createSlideJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .slide(height, showBeforeAfterBadges, items) = section else {
+        guard case let .slide(height, showBeforeAfterBadges, items, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .slide
         }
         
@@ -52,7 +54,8 @@ extension PaywallerPaywallJSONWrapper {
         
         var dataDict: [String: Any] = [
             "height": height,
-            "showBeforeAfterBadges": showBeforeAfterBadges
+            "showBeforeAfterBadges": showBeforeAfterBadges,
+            "horizontalPadding" : horizontalPadding
         ]
         
         var itemsArray: [[String: Any]] = []

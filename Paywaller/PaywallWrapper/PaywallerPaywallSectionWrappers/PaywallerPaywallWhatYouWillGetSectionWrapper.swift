@@ -16,6 +16,8 @@ extension PaywallerPaywallJSONWrapper {
            let hasContainer = dict["hasContainer"] as? Bool,
            let itemsData = dict["items"] as? [[String: Any]] {
             
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            
             var items: [PaywallerPaywallWhatYouWillGetItem] = []
             for itemData in itemsData {
                 if let emoji = itemData["emoji"] as? String,
@@ -27,7 +29,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .whatYouWillGet(title: title, hasContainer: hasContainer, items: items)
+            return .whatYouWillGet(title: title, hasContainer: hasContainer, items: items, horizontalPadding : horizontalPadding)
         }
         return nil
     }
@@ -35,7 +37,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createWhatYouWillGetJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .whatYouWillGet(title, hasContainer, items) = section else {
+        guard case let .whatYouWillGet(title, hasContainer, items, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .whatYouWillGet
         }
         
@@ -45,6 +47,7 @@ extension PaywallerPaywallJSONWrapper {
             "data": [
                 "title": title,
                 "hasContainer": hasContainer,
+                "horizontalPadding" : horizontalPadding,
                 "items": []
             ]
         ]

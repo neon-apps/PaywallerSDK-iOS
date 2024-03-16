@@ -19,12 +19,12 @@ class PaywallerPaywallSlideView : BasePaywallerPaywallSectionView{
         
         configureView()
         switch type {
-        case .slide(let height,let showBeforeAfterBadges, let items):
+        case .slide(let height,let showBeforeAfterBadges, let items, let horizontalPadding):
             
             addSubview(slidesView)
             slidesView.showBeforeAfterBadges = showBeforeAfterBadges
             slidesView.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.left.right.equalToSuperview().inset(horizontalPadding)
                 make.top.equalToSuperview()
                 make.height.equalTo(height)
             }

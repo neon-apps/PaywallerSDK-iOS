@@ -13,16 +13,19 @@ import UIKit
 class PaywallerPaywallFAQView : BasePaywallerPaywallSectionView{
     
     
-    var containerView = UIView()
+       var containerView = UIView()
        var titleLabel = UILabel()
        var itemsStackView = UIStackView()
        var allItems = [PaywallerPaywallFAQItem]()
+       var horizontalPadding = CGFloat()
+
        override func configureSection(type: PaywallerPaywallSectionType) {
-           configureView()
-           setConstraint()
+         
            switch type {
-           case .faq(let title, let items):
+           case .faq(let title, let items, let horizontalPadding):
                allItems = items
+               self.horizontalPadding = horizontalPadding
+
                items.enumerated().forEach { item, index in
                    addItem(index, item)
                }
@@ -30,6 +33,9 @@ class PaywallerPaywallFAQView : BasePaywallerPaywallSectionView{
            default:
                fatalError("Something went wrong with PaywallerPaywall. Please consult to manager.")
            }
+           configureView()
+           setConstraint()
+           
        }
        
        func configureView() {
@@ -67,7 +73,8 @@ class PaywallerPaywallFAQView : BasePaywallerPaywallSectionView{
                make.bottom.equalTo(itemsStackView.snp.bottom).offset(20)
            }
            containerView.snp.makeConstraints { make in
-               make.left.right.top.equalToSuperview()
+               make.left.right.equalToSuperview().inset(horizontalPadding)
+               make.top.equalToSuperview()
                make.bottom.equalToSuperview()
            }
        }

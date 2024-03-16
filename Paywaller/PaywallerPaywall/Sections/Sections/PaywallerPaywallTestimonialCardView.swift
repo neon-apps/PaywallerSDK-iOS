@@ -19,16 +19,17 @@ class PaywallerPaywallTestimonialCardView : BasePaywallerPaywallSectionView{
     var authorLabel = UILabel()
     var starsImageView = UIImageView()
     var confettiImageView = UIImageView()
-    
+    var horizontalPadding = CGFloat()
     override func configureSection(type: PaywallerPaywallSectionType) {
         
         
         
         
         switch type {
-        case .testimonialCard(let title, let subtitle, let author, let overrideImage, let overrideImageWithURL):
+        case .testimonialCard(let title, let subtitle, let author, let overrideImage, let overrideImageWithURL, let horizontalPadding):
             titleLabel.text = title
             subtitleLabel.text = subtitle
+            self.horizontalPadding = horizontalPadding
             if let author,  author != ""{
                 authorLabel.text = "- \(author)"
             }
@@ -101,7 +102,7 @@ class PaywallerPaywallTestimonialCardView : BasePaywallerPaywallSectionView{
         
         
         containerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.left.right.equalToSuperview().inset(horizontalPadding)
             make.top.equalToSuperview().offset(20)
             if authorLabel.text == ""{
                 make.bottom.equalTo(subtitleLabel.snp.bottom).offset(20)

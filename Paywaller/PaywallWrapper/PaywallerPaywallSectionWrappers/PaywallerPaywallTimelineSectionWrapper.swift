@@ -16,6 +16,8 @@ extension PaywallerPaywallJSONWrapper {
         if let hasContainer = dict["hasContainer"] as? Bool,
            let itemsData = dict["items"] as? [[String: Any]] {
             
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            
             var items: [PaywallerPaywallTimelineItem] = []
             for itemData in itemsData {
                 if let title = itemData["title"] as? String,
@@ -31,7 +33,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .timeline(hasContainer: hasContainer, items: items)
+            return .timeline(hasContainer: hasContainer, items: items, horizontalPadding : horizontalPadding)
         }
         return nil
     }
@@ -39,7 +41,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createTimelineJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .timeline(hasContainer, items) = section else {
+        guard case let .timeline(hasContainer, items, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .timeline
         }
         
@@ -49,7 +51,8 @@ extension PaywallerPaywallJSONWrapper {
         ]
         
         var dataDict: [String: Any] = [
-            "hasContainer": hasContainer
+            "hasContainer": hasContainer,
+            "horizontalPadding" : horizontalPadding
         ]
         
         var itemsArray: [[String: Any]] = []

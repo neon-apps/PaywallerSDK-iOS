@@ -23,7 +23,9 @@ extension PaywallerPaywallJSONWrapper {
                     items.append(planComparisonItem)
                 }
             }
-            return .planComparison(items: items)
+            
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            return .planComparison(items: items, horizontalPadding: horizontalPadding)
         }
         return nil
     }
@@ -45,7 +47,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createPlanComparisonJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .planComparison(items) = section else {
+        guard case let .planComparison(items, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .planComparison
         }
         
@@ -53,7 +55,8 @@ extension PaywallerPaywallJSONWrapper {
             "index": index,
             "type": "planComparison",
             "data": [
-                "items": []
+                "items": [],
+                "horizontalPadding" : horizontalPadding
             ]
         ]
         
@@ -64,7 +67,9 @@ extension PaywallerPaywallJSONWrapper {
             ]
             if var dataDict = planComparisonDict["data"] as? [String: Any] {
                 dataDict["items"] = (dataDict["items"] as? [[String: Any]] ?? []) + [itemDict]
+                dataDict["horizontalPadding" : horizontalPadding]
                 planComparisonDict["data"] = dataDict
+                
             }
         }
         

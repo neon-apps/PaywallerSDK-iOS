@@ -16,11 +16,13 @@ extension PaywallerPaywallJSONWrapper {
            if let itemsDict = dict["items"] as? [[String: Any]],
            let items = createFeaturesItems(fromDicts: itemsDict) {
             
+               let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+               
             let font = createFont(fromDict: dict)
             let overrideTextColor = createTextColor(fromDict: dict)
             let offset = dict["offset"] as? CGFloat
             
-               return .features(items: items, overrideTextColor: overrideTextColor, font: font, iconTintColor: .red, offset: offset)
+               return .features(items: items, overrideTextColor: overrideTextColor, font: font, iconTintColor: .red, offset: offset, horizontalPadding: horizontalPadding)
         }
         return nil
     }
@@ -66,7 +68,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createFeaturesJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .features(items, overrideTextColor, font, _, offset) = section else {
+        guard case let .features(items, overrideTextColor, font, _, offset, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .features
         }
         
@@ -85,6 +87,8 @@ extension PaywallerPaywallJSONWrapper {
         }
         
         dataDict["offset"] = offset ?? 0
+        
+        dataDict["horizontalPadding"] = horizontalPadding
         
         if let textColor = overrideTextColor {
             dataDict["textColor"] = textColor.toHex()

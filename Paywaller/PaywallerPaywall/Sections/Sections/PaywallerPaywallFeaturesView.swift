@@ -22,7 +22,7 @@ class PaywallerPaywallFeaturesView : BasePaywallerPaywallSectionView{
         setConstraint()
     
         switch type {
-        case .features(let items, let textColor, let font, let iconColor, let offset ):
+        case .features(let items, let textColor, let font, let iconColor, let offset, let horizontalPadding):
             verticalStackView.addArrangedSubview(UIView())
             items.forEach({addItem(item: $0, iconColor: iconColor, textColor: textColor, font: font)})
             verticalStackView.addArrangedSubview(UIView())
@@ -30,7 +30,7 @@ class PaywallerPaywallFeaturesView : BasePaywallerPaywallSectionView{
             verticalStackView.snp.makeConstraints { make in
                 make.top.equalToSuperview()
                 make.centerX.equalToSuperview().offset(offset ?? 0)
-                make.width.lessThanOrEqualToSuperview()
+                make.width.lessThanOrEqualToSuperview().inset(horizontalPadding * 2)
             }
             break
         default:

@@ -19,11 +19,11 @@ class PaywallerPaywallTestimonialsView : BasePaywallerPaywallSectionView{
         
         configureView()
         switch type {
-        case .testimonials(let height, let items):
+        case .testimonials(let height, let items, let horizontalPadding):
             
             addSubview(testimonialView)
             testimonialView.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.left.right.equalToSuperview().inset(horizontalPadding)
                 make.top.equalToSuperview()
                 make.height.equalTo(height)
             }

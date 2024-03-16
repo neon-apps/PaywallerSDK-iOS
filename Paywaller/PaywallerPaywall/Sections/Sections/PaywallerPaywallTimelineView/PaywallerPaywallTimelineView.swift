@@ -16,18 +16,21 @@ class PaywallerPaywallTimelineView : BasePaywallerPaywallSectionView{
     var containerView = UIView()
 
        var itemsStackView = UIStackView()
-       
+    var horizontalPadding = CGFloat()
+
        override func configureSection(type: PaywallerPaywallSectionType) {
-           configureView()
-           setConstraint()
+    
            switch type {
-           case .timeline(let hasContainer, let items):
+           case .timeline(let hasContainer, let items, let horizontalPadding):
+               self.horizontalPadding = horizontalPadding
                containerView.backgroundColor = hasContainer ? manager.constants.containerColor : .clear
                containerView.layer.borderColor = hasContainer ? manager.constants.containerBorderColor.cgColor : UIColor.clear.cgColor
                items.forEach { addItem($0) }
            default:
                fatalError("Something went wrong with PaywallerPaywall. Please consult to manager.")
            }
+           configureView()
+           setConstraint()
            configureLineView()
        }
        
@@ -73,7 +76,8 @@ class PaywallerPaywallTimelineView : BasePaywallerPaywallSectionView{
                make.bottom.equalTo(itemsStackView.snp.bottom)
            }
            containerView.snp.makeConstraints { make in
-               make.left.right.top.equalToSuperview()
+               make.left.right.equalToSuperview().inset(horizontalPadding)
+               make.top.equalToSuperview()
                make.bottom.equalToSuperview()
            }
        }

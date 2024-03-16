@@ -15,6 +15,8 @@ extension PaywallerPaywallJSONWrapper {
         if let height = dict["height"] as? CGFloat,
            let itemsData = dict["items"] as? [[String: Any]] {
             
+            let horizontalPadding = dict["horizontalPadding"] as? CGFloat ?? 0
+            
             var testimonialItems: [NeonTestimonial] = []
             for itemData in itemsData {
                 if let title = itemData["title"] as? String,
@@ -26,7 +28,7 @@ extension PaywallerPaywallJSONWrapper {
                 }
             }
             
-            return .testimonials(height: height, items: testimonialItems)
+            return .testimonials(height: height, items: testimonialItems, horizontalPadding: horizontalPadding)
         }
         return nil
     }
@@ -34,7 +36,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createTestimonialsJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .testimonials(height, items) = section else {
+        guard case let .testimonials(height, items, horizontalPadding) = section else {
             return nil // Return nil if the input section is not of type .testimonials
         }
         
@@ -44,7 +46,8 @@ extension PaywallerPaywallJSONWrapper {
         ]
         
         var dataDict: [String: Any] = [
-            "height": height
+            "height": height,
+            "horizontalPadding" : horizontalPadding
         ]
         
         var itemsArray: [[String: Any]] = []
