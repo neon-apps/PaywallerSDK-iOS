@@ -32,6 +32,11 @@ extension PaywallerPaywallJSONWrapper {
                 constants.horizontalPadding = horizontalPadding
             }
             
+            if let ctaButtonHorizontalPadding = configuration["ctaButtonHorizontalPadding"] as? CGFloat {
+                constants.ctaButtonHorizontalPadding = ctaButtonHorizontalPadding
+            }
+            
+            
             if let cornerRadius = configuration["cornerRadius"] as? CGFloat {
                 constants.cornerRadius = cornerRadius
             }

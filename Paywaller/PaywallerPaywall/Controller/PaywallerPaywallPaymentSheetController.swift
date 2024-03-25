@@ -93,7 +93,7 @@ public class PaywallerPaywallPaymentSheetController : UIViewController{
         }
      
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding)
+            make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding + paywallManager.constants.ctaButtonHorizontalPadding)
             make.height.equalTo(60)
             make.top.equalTo(lblMoneyBack.snp.bottom).offset(20)
         }

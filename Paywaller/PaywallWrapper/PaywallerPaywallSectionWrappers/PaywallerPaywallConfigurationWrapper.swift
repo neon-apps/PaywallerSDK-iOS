@@ -18,6 +18,7 @@ extension PaywallerPaywallJSONWrapper {
         configuration["termsURL"] = constants.termsURL
         configuration["isPaymentSheetActive"] = constants.isPaymentSheetActive
         configuration["horizontalPadding"] = constants.horizontalPadding
+        configuration["ctaButtonHorizontalPadding"] = constants.ctaButtonHorizontalPadding
         configuration["cornerRadius"] = constants.cornerRadius
         configuration["containerBorderWidth"] = constants.containerBorderWidth
 

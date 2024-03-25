@@ -41,13 +41,15 @@ public class PaywallerPaywallManager{
         containerBorderColor: UIColor,
         selectedContainerBorderColor: UIColor,
         ctaButtonTextColor: UIColor,
+        ctaButtonHorizontalPadding: CGFloat,
         termsURL : String? = nil,
         privacyURL : String? = nil
         
     ) {
         constants.provider = provider
         constants.isPaymentSheetActive = isPaymentSheetActive
-        constants.horizontalPadding = horizontalPadding
+        constants.horizontalPadding = horizontalPadding 
+        constants.ctaButtonHorizontalPadding = ctaButtonHorizontalPadding
         constants.cornerRadius = cornerRadius
         constants.containerBorderWidth = containerBorderWidth
         constants.primaryTextColor = primaryTextColor

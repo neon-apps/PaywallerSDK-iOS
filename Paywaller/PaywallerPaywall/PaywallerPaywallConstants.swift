@@ -15,7 +15,8 @@ public class PaywallerPaywallConstants{
     public var privacyURL : String?
     public var provider = PaywallerPaywallProviderConfiguration.revenuecat
     public var isPaymentSheetActive = Bool()
-    public var horizontalPadding = CGFloat()
+    public var horizontalPadding = CGFloat() 
+    public var ctaButtonHorizontalPadding = CGFloat()
     public var cornerRadius = CGFloat()
     public var containerBorderWidth = CGFloat()
     // Colors
@@ -52,6 +53,7 @@ public class PaywallerPaywallConstants{
             copiedConstants.provider = self.provider
             copiedConstants.isPaymentSheetActive = self.isPaymentSheetActive
             copiedConstants.horizontalPadding = self.horizontalPadding
+            copiedConstants.ctaButtonHorizontalPadding = self.ctaButtonHorizontalPadding
             copiedConstants.cornerRadius = self.cornerRadius
             copiedConstants.containerBorderWidth = self.containerBorderWidth
             copiedConstants.primaryTextColor = self.primaryTextColor

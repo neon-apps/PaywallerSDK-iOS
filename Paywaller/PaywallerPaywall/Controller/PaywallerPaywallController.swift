@@ -79,7 +79,7 @@ public class PaywallerPaywallController : UIViewController{
         continueButton.addTarget(self, action: #selector(continueButtonClicked), for: .touchUpInside)
         continueButton.setTitle("Continue", for: .normal)
         continueButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding)
+            make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding + paywallManager.constants.ctaButtonHorizontalPadding)
             make.height.equalTo(60)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
@@ -99,7 +99,7 @@ public class PaywallerPaywallController : UIViewController{
         if !paywallManager.constants.isPaymentSheetActive{
             configureLegalView()
             continueButton.snp.remakeConstraints { make in
-                make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding)
+                make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding + paywallManager.constants.ctaButtonHorizontalPadding)
                 make.height.equalTo(60)
                 make.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
             }
