@@ -78,8 +78,8 @@ public class Paywaller{
     
     internal static func configureProvider(provider : PaywallerAppProviderConfiguration, completion : @escaping () -> ()){
         switch provider {
-        case .adapty(let apiKey, let placementIDs, let accessLevel):
-            AdaptyManager.configure(withAPIKey: apiKey, placementIDs: placementIDs, accessLevel: accessLevel) {
+        case .adapty(let apiKey, let placementIDs, let accessLevel, let customerUserId):
+            AdaptyManager.configure(withAPIKey: apiKey, placementIDs: placementIDs, accessLevel: accessLevel, customerUserId : customerUserId) {
                 fetchPaywalls(for: placementIDs, completion: {
                     completion()
                 })
