@@ -25,7 +25,14 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
         switch type {
         case .video(let height, let videoFileName, let videoFileExtension, let cornerRadious, let horizontalPadding, let contentMode, let shouldBlendWithBackground):
             
-            videoPlayerView.configure(with: videoFileName, fileExtension: videoFileExtension)
+            
+            if Bundle.main.bundleIdentifier == "com.neonapps.paywaller" {
+                videoPlayerView.configure(with: "placeholder_video", fileExtension: "mov")
+            } else {
+                videoPlayerView.configure(with: videoFileName, fileExtension: videoFileExtension)
+            }
+            
+            
             videoPlayerView.shouldPlayForever = true
             videoPlayerView.playerViewController.view.layer.cornerRadius = cornerRadious
             videoPlayerView.playerViewController.view.layer.masksToBounds = true
