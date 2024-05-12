@@ -17,7 +17,7 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
     let gradientLayer = CAGradientLayer()
     
     
-    override func configureSection(type: PaywallerPaywallSectionType) {
+    public override func configureSection(type: PaywallerPaywallSectionType) {
         
         configureView()
         setConstraint()
