@@ -43,6 +43,7 @@ public class PaywallerPaywallController : UIViewController{
         }
         
         updateGradientLayerFrame(gradientLayer: gradientLayer, paywallBackgroundView: paywallBackgroundView)
+        layoutSections()
         }
        
     func configureUI(){
@@ -170,7 +171,7 @@ public class PaywallerPaywallController : UIViewController{
         if closeButtonAppearanceDuration != 0{
             btnCross.isHidden = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(closeButtonAppearanceDuration) , execute: {  
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(closeButtonAppearanceDuration) , execute: {
             btnCross.isHidden = false
         })
         
@@ -200,6 +201,19 @@ public class PaywallerPaywallController : UIViewController{
         
         
 
+    }
+    func layoutSections(){
+        for section in paywallManager.sections{
+            switch section.type {
+            case .video:
+                if let videoSectionView = section.view as? PaywallerPaywallVideoPlayerView{
+                    videoSectionView.layoutView()
+                }
+                break
+            default :
+                break
+            }
+        }
     }
     
     @objc func btnCrossClicked(){

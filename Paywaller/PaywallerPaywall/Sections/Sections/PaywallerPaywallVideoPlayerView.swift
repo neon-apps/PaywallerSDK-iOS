@@ -54,7 +54,6 @@ class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
                 gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
                 gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
                 gradientView.layer.insertSublayer(gradientLayer, at: 0)
-                gradientLayer.frame = gradientView.bounds
             }
 
         default:
@@ -62,6 +61,9 @@ class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
         }
     }
     
+    func layoutView(){
+        gradientLayer.frame = gradientView.bounds
+    }
     
     func configureView(){
     
@@ -73,6 +75,7 @@ class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
             make.bottom.equalTo(videoPlayerView.snp.bottom)
         }
     }
+    
     
 }
 
