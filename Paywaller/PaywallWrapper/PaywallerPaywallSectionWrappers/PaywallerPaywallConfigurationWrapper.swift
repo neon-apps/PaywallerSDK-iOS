@@ -16,7 +16,8 @@ extension PaywallerPaywallJSONWrapper {
         // Populate the configuration dictionary with values from the constants object
         configuration["privacyURL"] = constants.privacyURL
         configuration["termsURL"] = constants.termsURL
-        configuration["isPaymentSheetActive"] = constants.isPaymentSheetActive
+        configuration["isPaymentSheetActive"] = constants.isPaymentSheetActive 
+        configuration["closeButtonDelay"] = constants.closeButtonDelay
         configuration["horizontalPadding"] = constants.horizontalPadding
         configuration["ctaButtonHorizontalPadding"] = constants.ctaButtonHorizontalPadding
         configuration["cornerRadius"] = constants.cornerRadius

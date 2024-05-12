@@ -19,6 +19,9 @@ extension PaywallerPaywallJSONWrapper {
             if let isPaymentSheetActive = configuration["isPaymentSheetActive"] as? Bool {
                 constants.isPaymentSheetActive = isPaymentSheetActive
             }
+             if let closeButtonDelay = configuration["closeButtonDelay"] as? Int {
+                constants.closeButtonDelay = closeButtonDelay
+            }
             
             if let privacyURL = configuration["privacyURL"] as? String {
                 constants.privacyURL = privacyURL

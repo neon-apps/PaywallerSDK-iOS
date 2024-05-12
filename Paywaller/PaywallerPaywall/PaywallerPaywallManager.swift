@@ -28,7 +28,8 @@ public class PaywallerPaywallManager{
     }
     public func configure(
         provider : PaywallerPaywallProviderConfiguration,
-        isPaymentSheetActive : Bool,
+        isPaymentSheetActive : Bool,  
+        closeButtonDelay : Int,
         horizontalPadding: CGFloat,
         cornerRadius: CGFloat,
         containerBorderWidth : CGFloat,
@@ -47,8 +48,9 @@ public class PaywallerPaywallManager{
         
     ) {
         constants.provider = provider
-        constants.isPaymentSheetActive = isPaymentSheetActive
-        constants.horizontalPadding = horizontalPadding 
+        constants.isPaymentSheetActive = isPaymentSheetActive  
+        constants.closeButtonDelay = closeButtonDelay
+        constants.horizontalPadding = horizontalPadding
         constants.ctaButtonHorizontalPadding = ctaButtonHorizontalPadding
         constants.cornerRadius = cornerRadius
         constants.containerBorderWidth = containerBorderWidth
