@@ -18,10 +18,11 @@ extension PaywallerPaywallJSONWrapper {
            let videoFileExtension = dict["videoFileExtension"] as? String,
            let cornerRadius = dict["cornerRadious"] as? CGFloat,
            let horizontalPadding = dict["horizontalPadding"] as? CGFloat,
-           let contentModeRaw = dict["contentMode"] as? String,
+           let contentModeRaw = dict["contentMode"] as? String, 
+            let shouldBlendWithBackgroundRaw = dict["shouldBlendWithBackground"] as? Bool,
            let contentMode = videoGravityFromString(contentModeRaw) {
 
-            return .video(height: height, videoFileName: videoFileName, videoFileExtension: videoFileExtension, cornerRadious: cornerRadius, horizontalPadding: horizontalPadding, contentMode: contentMode)
+            return .video(height: height, videoFileName: videoFileName, videoFileExtension: videoFileExtension, cornerRadious: cornerRadius, horizontalPadding: horizontalPadding, contentMode: contentMode, shouldBlendWithBackground: shouldBlendWithBackgroundRaw)
         }
         return nil
     }
@@ -40,7 +41,7 @@ extension PaywallerPaywallJSONWrapper {
 @available(iOS 15.0, *)
 extension PaywallerPaywallJSONWrapper {
     public static func createVideoPlayerJSON(from section: PaywallerPaywallSectionType, index: Int) -> [String: Any]? {
-        guard case let .video(height, videoFileName, videoFileExtension, cornerRadius, horizontalPadding, contentMode) = section else {
+        guard case let .video(height, videoFileName, videoFileExtension, cornerRadius, horizontalPadding, contentMode, shouldBlendWithBackground) = section else {
             return nil
         }
         
@@ -55,7 +56,8 @@ extension PaywallerPaywallJSONWrapper {
                 "videoFileExtension": videoFileExtension,
                 "cornerRadious": cornerRadius,
                 "horizontalPadding": horizontalPadding,
-                "contentMode": contentModeString
+                "contentMode": contentModeString,
+                "shouldBlendWithBackground": shouldBlendWithBackground
             ]
         ]
         
@@ -88,6 +90,7 @@ extension PaywallerPaywallJSONWrapper {
          "cornerRadius": 20,
          "horizontalPadding": 0,
          "contentMode": "scaleAspectFill"
+         "shouldBlendWithBackground": true
      },
      "index": 3,
      "type": "video"

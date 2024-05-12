@@ -14,7 +14,7 @@ public enum PaywallerPaywallSectionType{
     case spacing(height : CGFloat)
     case label(text : String, font : UIFont, overrideTextColor : UIColor? = nil, alignment : NSTextAlignment, horizontalPadding :CGFloat)
     case image(height : CGFloat, image : UIImage, cornerRadious : CGFloat, horizontalPadding :CGFloat, contentMode : UIView.ContentMode)
-    case video(height : CGFloat, videoFileName : String, videoFileExtension : String, cornerRadious : CGFloat, horizontalPadding :CGFloat, contentMode : AVLayerVideoGravity)
+    case video(height : CGFloat, videoFileName : String, videoFileExtension : String, cornerRadious : CGFloat, horizontalPadding :CGFloat, contentMode : AVLayerVideoGravity, shouldBlendWithBackground : Bool)
     case imageWithURL(height : CGFloat, url : String, cornerRadious : CGFloat, horizontalPadding :CGFloat, contentMode : UIView.ContentMode)
     case features(items : [NeonPaywallFeature], overrideTextColor : UIColor? = nil,  font : UIFont? = nil, iconTintColor : UIColor? = nil, offset : CGFloat? = nil, horizontalPadding :CGFloat)
     case testimonialCard(title : String, subtitle : String, author : String? = nil, overrideImage : UIImage? = nil,  overrideImageWithURL : String? = nil, horizontalPadding :CGFloat)
@@ -36,8 +36,8 @@ public enum PaywallerPaywallSectionType{
              return .label(text: text, font: font, overrideTextColor: overrideTextColor, alignment: alignment, horizontalPadding: horizontalPadding)
          case .image(let height, let image, let cornerRadius, let horizontalPadding, let contentMode):
              return .image(height: height, image: image, cornerRadious: cornerRadius, horizontalPadding: horizontalPadding, contentMode: contentMode)
-         case .video(let height, let videoFileName, let videoFileExtension, let cornerRadious, let horizontalPadding, let contentMode):
-             return .video(height: height, videoFileName: videoFileName, videoFileExtension: videoFileExtension, cornerRadious: cornerRadious, horizontalPadding: horizontalPadding, contentMode: contentMode)
+         case .video(let height, let videoFileName, let videoFileExtension, let cornerRadious, let horizontalPadding, let contentMode, let shouldBlendWithBackground):
+             return .video(height: height, videoFileName: videoFileName, videoFileExtension: videoFileExtension, cornerRadious: cornerRadious, horizontalPadding: horizontalPadding, contentMode: contentMode, shouldBlendWithBackground : shouldBlendWithBackground)
          case .imageWithURL(let height, let url, let cornerRadius, let horizontalPadding, let contentMode):
              return .imageWithURL(height: height, url: url, cornerRadious: cornerRadius, horizontalPadding: horizontalPadding, contentMode: contentMode)
          case .features(let items, let overrideTextColor, let font, let iconTintColor, let offset, let horizontalPadding):

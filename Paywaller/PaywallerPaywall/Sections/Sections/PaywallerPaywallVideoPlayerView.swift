@@ -13,6 +13,9 @@ import UIKit
 class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
     
     let videoPlayerView = NeonVideoPlayerView()
+    let gradientView = UIView()
+    let gradientLayer = CAGradientLayer()
+    
     
     override func configureSection(type: PaywallerPaywallSectionType) {
         
@@ -20,7 +23,7 @@ class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
         setConstraint()
         
         switch type {
-        case .video(let height, let videoFileName, let videoFileExtension, let cornerRadious, let horizontalPadding, let contentMode):
+        case .video(let height, let videoFileName, let videoFileExtension, let cornerRadious, let horizontalPadding, let contentMode, let shouldBlendWithBackground):
             
             videoPlayerView.configure(with: videoFileName, fileExtension: videoFileExtension)
             videoPlayerView.shouldPlayForever = true
@@ -37,12 +40,28 @@ class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
             self.layer.masksToBounds = true
 
 
-            
+            if shouldBlendWithBackground{
+                
+                addSubview(gradientView)
+                gradientView.snp.makeConstraints { make in
+                    make.left.right.equalToSuperview()
+                    make.centerY.equalTo(videoPlayerView.snp.bottom)
+                    make.height.equalTo(200)
+                }
+                
+                gradientLayer.colors = [manager.constants.backgroundColor.withAlphaComponent(0).cgColor, manager.constants.backgroundColor.cgColor]
+                gradientLayer.locations = [0, 0.5]
+                gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+                gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+                gradientView.layer.insertSublayer(gradientLayer, at: 0)
+                gradientLayer.frame = gradientView.bounds
+            }
 
         default:
             fatalError("Something went wrong with PaywallerPaywall. Please consult to manager.")
         }
     }
+    
     
     func configureView(){
     
