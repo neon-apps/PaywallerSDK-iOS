@@ -42,8 +42,11 @@ public class PaywallerPaywallSection{
             return PaywallerPaywallTrustBadgeView(type: type, manager: manager)
         case .slide:
             return PaywallerPaywallSlideView(type: type, manager: manager)
+        case .video:
+            return PaywallerPaywallVideoPlayerView(type: type, manager: manager)
         case .custom:
             return BasePaywallerPaywallSectionView(type: type, manager: manager)
+        
         }
         
     }

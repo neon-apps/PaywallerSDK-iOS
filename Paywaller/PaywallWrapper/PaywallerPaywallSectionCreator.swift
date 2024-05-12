@@ -39,6 +39,10 @@ public class PaywallerPaywallJSONWrapper {
                         if let imageSection = createImageSection(fromDict: data) {
                             sections.append(imageSection)
                         }
+                    case "video":
+                        if let videoSection = createVideoPlayerSection(fromDict: data) {
+                            sections.append(videoSection)
+                        }
                     case "features":
                         if let featuresSection = createFeaturesSection(fromDict: data) {
                             sections.append(featuresSection)

@@ -60,8 +60,12 @@ extension PaywallerPaywallJSONWrapper {
             case .slide:
                 sectionDict = createSlideJSON(from: section, index: index) ?? [:]
                 break
+            case .video:
+                sectionDict = createVideoPlayerJSON(from: section, index: index) ?? [:]
+                break
             case .custom:
                 break
+           
             }
 
             if !sectionDict.isEmpty {
