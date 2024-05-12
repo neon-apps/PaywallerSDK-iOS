@@ -46,7 +46,7 @@ extension PaywallerPaywallJSONWrapper {
         
         let contentModeString = videoGravityStringFromEnum(contentMode)
         
-        let imageDict: [String: Any] = [
+        let videoDict: [String: Any] = [
             "index": index,
             "type": "video",
             "data": [
@@ -59,7 +59,7 @@ extension PaywallerPaywallJSONWrapper {
             ]
         ]
         
-        return imageDict
+        return videoDict
     }
 
     public static func videoGravityStringFromEnum(_ contentMode: AVLayerVideoGravity) -> String {
