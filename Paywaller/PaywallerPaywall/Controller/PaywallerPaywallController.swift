@@ -165,6 +165,17 @@ public class PaywallerPaywallController : UIViewController{
     func addSections(){
 
         let btnCross = UIButton()
+        
+        let closeButtonAppearanceDuration = paywallManager.constants.closeButtonDelay
+        if closeButtonAppearanceDuration != 0{
+            btnCross.isHidden = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(closeButtonAppearanceDuration) , execute: {  
+            btnCross.isHidden = false
+        })
+        
+        
+        
         btnCross.tintColor = paywallManager.constants.primaryTextColor
         btnCross.setImage(NeonSymbols.xmark, for: .normal)
         btnCross.addTarget(self, action: #selector(btnCrossClicked), for: .touchUpInside)
