@@ -44,6 +44,7 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
                 
                 addSubview(gradientView)
                 gradientView.frame = CGRect(x: 0, y: height - 100, width: UIScreen.main.bounds.width, height: 200)
+                gradientLayer.frame = gradientView.bounds
                 gradientLayer.colors = [manager.constants.backgroundColor.withAlphaComponent(0).cgColor, manager.constants.backgroundColor.cgColor]
                 gradientLayer.locations = [0, 0.5]
                 gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
