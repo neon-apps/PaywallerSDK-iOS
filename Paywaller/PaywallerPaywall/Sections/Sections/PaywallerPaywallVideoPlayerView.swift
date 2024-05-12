@@ -10,7 +10,7 @@ import NeonSDK
 import UIKit
 
 @available(iOS 15.0, *)
-class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
+public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
     
     let videoPlayerView = NeonVideoPlayerView()
     let gradientView = UIView()
