@@ -29,6 +29,7 @@ class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
             videoPlayerView.playerViewController.videoGravity = contentMode
     
             videoPlayerView.snp.makeConstraints { make in
+                make.top.equalToSuperview()
                 make.height.equalTo(height)
                 make.left.right.equalToSuperview().inset(horizontalPadding)
             }
