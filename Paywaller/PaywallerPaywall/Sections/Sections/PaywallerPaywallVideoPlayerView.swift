@@ -61,7 +61,7 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
         }
     }
     
-    func layoutView(){
+    public func layoutView(){
         gradientLayer.frame = gradientView.bounds
     }
     
