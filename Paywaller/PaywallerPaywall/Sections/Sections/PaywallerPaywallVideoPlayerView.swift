@@ -43,12 +43,7 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
             if shouldBlendWithBackground{
                 
                 addSubview(gradientView)
-                gradientView.snp.makeConstraints { make in
-                    make.left.right.equalToSuperview()
-                    make.centerY.equalTo(videoPlayerView.snp.bottom)
-                    make.height.equalTo(200)
-                }
-                
+                gradientView.frame = CGRect(x: 0, y: height - 100, width: UIScreen.main.bounds.width, height: 200)
                 gradientLayer.colors = [manager.constants.backgroundColor.withAlphaComponent(0).cgColor, manager.constants.backgroundColor.cgColor]
                 gradientLayer.locations = [0, 0.5]
                 gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
@@ -61,9 +56,6 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
         }
     }
     
-    public func layoutView(){
-        gradientLayer.frame = gradientView.bounds
-    }
     
     func configureView(){
     

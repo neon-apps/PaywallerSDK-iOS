@@ -43,7 +43,6 @@ public class PaywallerPaywallController : UIViewController{
         }
         
         updateGradientLayerFrame(gradientLayer: gradientLayer, paywallBackgroundView: paywallBackgroundView)
-        layoutSections()
         }
        
     func configureUI(){
@@ -201,19 +200,6 @@ public class PaywallerPaywallController : UIViewController{
         
         
 
-    }
-    func layoutSections(){
-        for section in paywallManager.sections{
-            switch section.type {
-            case .video:
-                if let videoSectionView = section.view as? PaywallerPaywallVideoPlayerView{
-                    videoSectionView.layoutView()
-                }
-                break
-            default :
-                break
-            }
-        }
     }
     
     @objc func btnCrossClicked(){
