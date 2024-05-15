@@ -203,6 +203,13 @@ public class PaywallerPaywallController : UIViewController{
     }
     
     @objc func btnCrossClicked(){
+        
+        for section in mainStack.subviews{
+            if let planSection = section as? PaywallerPaywallVideoPlayerView{
+                planSection.deinitPlayer()
+            }
+        }
+        
         paywallManager.delegate?.dismissed(from: self)
     }
     

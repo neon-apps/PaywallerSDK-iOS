@@ -77,5 +77,10 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
     }
     
     
+
+    func deinitPlayer(){
+        videoPlayerView.deinitPlayer()
+    }
+    
 }
 
