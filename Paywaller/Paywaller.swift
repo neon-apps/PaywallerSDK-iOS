@@ -106,9 +106,15 @@ public class Paywaller{
     
     internal static func fetchPaywall(for placementID : String, completion : @escaping () -> ()){
         let adaptyPaywall = AdaptyManager.getPaywall(placementID: placementID)
-        guard let remoteConfig = adaptyPaywall?.remoteConfig?.dictionary as? [String : Any] else {return}
+        guard let remoteConfig = adaptyPaywall?.remoteConfig?.dictionary as? [String : Any] else {
+            completion()
+            return
+        }
         remoteConfigs[placementID] = remoteConfig
-        guard let paywallID = remoteConfig["paywall_id"] as? String else {return}
+        guard let paywallID = remoteConfig["paywall_id"] as? String else {
+            completion()
+            return
+        }
         
         APIManager.shared.getPaywall(id: paywallID, completion: { result in
             switch result {
