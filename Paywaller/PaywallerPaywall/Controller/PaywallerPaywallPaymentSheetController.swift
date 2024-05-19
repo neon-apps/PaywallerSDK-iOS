@@ -103,7 +103,16 @@ public class PaywallerPaywallPaymentSheetController : UIViewController{
         legalView.restoreButtonClicked = { [self] in
             PaywallerPaywallPurchaseManager.restore(paywallManager: paywallManager, controller: self){ [self] in
                 self.dismiss(animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [self] in
+                    
+                    if let paywallController  = self.presentingViewController as? PaywallerPaywallController{
+                        for section in paywallController.mainStack.subviews{
+                            if let planSection = section as? PaywallerPaywallVideoPlayerView{
+                                planSection.deinitPlayer()
+                            }
+                        }
+                    }
+                    
                     paywallManager.delegate?.restored(from: self.presentingViewController!)
                 })
             } completionFailure: {
@@ -291,6 +300,16 @@ public class PaywallerPaywallPaymentSheetController : UIViewController{
         PaywallerPaywallPurchaseManager.subscribe(paywallManager: paywallManager) { [self] in
             self.dismiss(animated: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [self] in
+                
+                if let paywallController  = self.presentingViewController as? PaywallerPaywallController{
+                    for section in paywallController.mainStack.subviews{
+                        if let planSection = section as? PaywallerPaywallVideoPlayerView{
+                            planSection.deinitPlayer()
+                        }
+                    }
+                }
+              
+                
                 paywallManager.delegate?.purchased(from: self.presentingViewController!, identifier: paywallManager.constants.selectedPlan.productIdentifier)
             })
           

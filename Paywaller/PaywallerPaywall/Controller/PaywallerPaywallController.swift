@@ -115,6 +115,13 @@ public class PaywallerPaywallController : UIViewController{
         
         legalView.restoreButtonClicked = { [self] in
             PaywallerPaywallPurchaseManager.restore(paywallManager: paywallManager, controller: self){ [self] in
+                
+                for section in mainStack.subviews{
+                    if let planSection = section as? PaywallerPaywallVideoPlayerView{
+                        planSection.deinitPlayer()
+                    }
+                }
+                
                 paywallManager.delegate?.restored(from: self)
             } completionFailure: {
                 
@@ -154,6 +161,13 @@ public class PaywallerPaywallController : UIViewController{
             self.present(paymentSheetController, animated: true, completion: nil)
         }else{
             PaywallerPaywallPurchaseManager.subscribe(paywallManager: paywallManager) { [self] in
+                
+                for section in mainStack.subviews{
+                    if let planSection = section as? PaywallerPaywallVideoPlayerView{
+                        planSection.deinitPlayer()
+                    }
+                }
+                
                 paywallManager.delegate?.purchased(from: self, identifier:  paywallManager.constants.selectedPlan.productIdentifier)
             }
         }
