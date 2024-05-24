@@ -27,7 +27,7 @@ public class PaywallerPaywallVideoPlayerView : BasePaywallerPaywallSectionView{
             
             
             if Bundle.main.bundleIdentifier == "com.neonapps.paywaller" {
-                videoPlayerView.configure(with: "placeholder_video", fileExtension: "mov")
+              //  videoPlayerView.configure(with: "placeholder_video", fileExtension: "mov")
             } else {
                 videoPlayerView.configure(with: videoFileName, fileExtension: videoFileExtension)
             }
