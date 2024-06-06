@@ -78,6 +78,7 @@ public class PaywallerPaywallController : UIViewController{
         continueButton.titleLabel?.font = Font.custom(size: 16, fontWeight: .SemiBold)
         continueButton.addTarget(self, action: #selector(continueButtonClicked), for: .touchUpInside)
         continueButton.setTitle("Continue", for: .normal)
+        continueButton.setTitleColor(paywallManager.constants.ctaButtonTextColor, for: .normal)
         continueButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(paywallManager.constants.horizontalPadding + paywallManager.constants.ctaButtonHorizontalPadding)
             make.height.equalTo(60)
