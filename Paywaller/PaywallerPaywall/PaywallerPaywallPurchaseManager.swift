@@ -17,9 +17,9 @@ class PaywallerPaywallPurchaseManager{
         
         if let adaptyPackage = AdaptyManager.getPackage(id: plan.productIdentifier){
             
-            let product = adaptyPackage.skProduct
+            guard let product = adaptyPackage.sk2Product else {return}
             
-            AdaptyManager.selectPackage(id: product.productIdentifier)
+            AdaptyManager.selectPackage(id: product.id)
             
             AdaptyManager.purchase(animation: .loadingCircle, animationColor: paywallManager.constants.mainColor) {
                 completionSuccess()
